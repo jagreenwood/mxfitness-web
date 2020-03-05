@@ -21,6 +21,9 @@ public func configure(_ app: Application) throws {
         app.leaf.cache.isEnabled = false
     }
 
+    app.migrations.add(User.Migration())
+    app.migrations.add(UserToken.Migration())
+
     // register routes
     try routes(app)
 }
