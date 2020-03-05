@@ -18,6 +18,7 @@ extension User {
                 .field("name", .string, .required)
                 .field("email", .string, .required)
                 .field("password_hash", .string, .required)
+                .unique(on: "email")
                 .create()
         }
 
