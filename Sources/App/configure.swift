@@ -24,6 +24,8 @@ public func configure(_ app: Application) throws {
 
     app.migrations.add(User.Migration())
     app.migrations.add(UserToken.Migration())
+    app.migrations.add(Workout.Migration())
+    app.migrations.add(Challenge.Migration())
 
     // register routes
     try routes(app)
