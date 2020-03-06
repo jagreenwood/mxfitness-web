@@ -23,12 +23,16 @@ final class Workout: Model {
     @Parent(key: "user_id")
     var user: User
 
+    @Parent(key: "challenge_id")
+    var challenge: Challenge
+
     init() { }
 
-    init(id: UUID? = nil, duration: TimeInterval, type: WorkoutType, userID: User.IDValue) {
+    init(id: UUID? = nil, duration: TimeInterval, type: WorkoutType, userID: User.IDValue, challengeID: Challenge.IDValue) {
         self.id = id
         self.duration = duration
         self.type = type
         self.$user.id = userID
+        self.$challenge.id = challengeID
     }
 }

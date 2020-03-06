@@ -14,6 +14,8 @@ extension Challenge {
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema(Challenge.schema)
                 .id()
+                .field("start_date", .date, .required)
+                .field("end_date", .date, .required)
                 .create()
         }
 

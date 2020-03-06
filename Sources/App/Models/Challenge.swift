@@ -14,8 +14,23 @@ final class Challenge: Model {
     @ID(key: .id)
     var id: UUID?
 
+    @Field(key: "start_date")
+    var startDate: Date
+
+    @Field(key: "end_date")
+    var endDate: Date
+
     @Children(for: \.$challenge)
     var users: [User]
 
+    @Children(for: \.$challenge)
+    var workouts: [Workout]
+
     init() { }
+
+    init(id: UUID? = nil, startDate: Date, endDate: Date) {
+        self.id = id
+        self.startDate = startDate
+        self.endDate = endDate
+    }
 }

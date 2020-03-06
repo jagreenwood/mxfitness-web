@@ -17,6 +17,7 @@ extension Workout {
                 .field("duration", .double, .required)
                 .field("type", .string, .required)
                 .field("user_id", .uuid, .required, .references("users", "id"))
+                .field("challenge_id", .uuid, .required, .references("challenges", "id"))
                 .create()
         }
 
