@@ -8,7 +8,7 @@ func routes(_ app: Application) throws {
     }
 
     /// API  Create User
-    app.post("user", "create", use: UserController.create)
+    app.post("user", "create", use: UserController.signup)
 
     let passwordProtected = app.grouped(User.authenticator().middleware())
 
@@ -18,8 +18,12 @@ func routes(_ app: Application) throws {
     /// Token middleware for API routes
     let tokenProtected = app.grouped(UserToken.authenticator().middleware())
 
+    /// Render signup
+    app.get("signup", use: UserController.signupView)
+    /// Render login
+    app.get("login", use: UserController.loginView)
     /// Session user create
-    app.post("create", use: UserController.sessionCreate)
+    app.post("signup", use: UserController.sessionSignup)
     /// Session login
     app.post("login", use: UserController.sessionLogin)
 

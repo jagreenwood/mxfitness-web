@@ -13,16 +13,8 @@ struct UserController { }
 
 /// API Calls
 extension UserController {
-    static func create(_ request: Request) throws -> EventLoopFuture<User> {
-        try UserCreate.validate(request)
-        let create = try request.content.decode(UserCreate.self)
-        let user = try User(
-            name: create.name,
-            email: create.email,
-            passwordHash: Bcrypt.hash(create.password)
-        )
-        return user.save(on: request.db)
-            .map { user }
+    static func signup(_ request: Request) throws -> EventLoopFuture<User> {
+        try createUser(request)
     }
 
     static func login(_ request: Request) throws -> EventLoopFuture<UserToken> {
@@ -35,13 +27,38 @@ extension UserController {
 
 /// Session Calls
 extension UserController {
-    static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
-        throw Abort(.notImplemented)
-        /* Handle create via model decoding, authenticate user on request, redirect to user home view */
+    static func signupView(_ request: Request) throws -> EventLoopFuture<View> {
+        request.view.render("signup")
+    }
+
+    static func sessionSignup(_ request: Request) throws -> EventLoopFuture<Response> {
+        try createUser(request).map { user in
+            request.session.authenticate(user)
+
+            return request.redirect(to: "challenges")
+        }
+    }
+
+    static func loginView(_ request: Request) throws -> EventLoopFuture<View> {
+        request.view.render("login")
     }
 
     static func sessionLogin(_ request: Request) throws -> EventLoopFuture<Response> {
         throw Abort(.notImplemented)
         /* Handle login via model decoding, authenticate user on request, redirect to user home view */
+    }
+}
+
+private extension UserController {
+    static func createUser(_ request: Request) throws -> EventLoopFuture<User> {
+        try UserCreate.validate(request)
+        let create = try request.content.decode(UserCreate.self)
+        let user = try User(
+            name: create.name,
+            email: create.email,
+            passwordHash: Bcrypt.hash(create.password)
+        )
+        return user.save(on: request.db)
+            .map { user }
     }
 }
