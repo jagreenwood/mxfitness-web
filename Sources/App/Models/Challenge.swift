@@ -14,5 +14,8 @@ final class Challenge: Model {
     @ID(key: .id)
     var id: UUID?
 
+    @Children(for: \.$challenge)
+    var users: [User]
+
     init() { }
 }

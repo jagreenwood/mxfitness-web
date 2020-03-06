@@ -26,6 +26,9 @@ final class User: Model, Content {
     @Children(for: \.$user)
     var workouts: [Workout]
 
+    @OptionalParent(key: "challenge_id")
+    var challenge: Challenge?
+
     init() { }
 
     init(id: UUID? = nil, name: String, email: String, passwordHash: String) {
