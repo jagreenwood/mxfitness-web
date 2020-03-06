@@ -9,13 +9,13 @@ import Fluent
 import Vapor
 import Leaf
 
-struct UserController {
+struct UserController { }
+
+/// API Calls
+extension UserController {
     static func create(_ request: Request) throws -> EventLoopFuture<User> {
-        try User.Create.validate(request)
-        let create = try request.content.decode(User.Create.self)
-        guard create.password == create.confirmPassword else {
-            throw Abort(.badRequest, reason: "Passwords did not match")
-        }
+        try UserCreate.validate(request)
+        let create = try request.content.decode(UserCreate.self)
         let user = try User(
             name: create.name,
             email: create.email,
@@ -31,7 +31,10 @@ struct UserController {
         return token.save(on: request.db)
             .map { token }
     }
+}
 
+/// Session Calls
+extension UserController {
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
         throw Abort(.notImplemented)
         /* Handle create via model decoding, authenticate user on request, redirect to user home view */
