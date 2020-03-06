@@ -17,6 +17,7 @@ extension User {
                 .id()
                 .field("name", .string, .required)
                 .field("email", .string, .required)
+                .field("workouts", .custom([Workout.self]), .required, .references("workouts", "id"))
                 .field("password_hash", .string, .required)
                 .unique(on: "email")
                 .create()
