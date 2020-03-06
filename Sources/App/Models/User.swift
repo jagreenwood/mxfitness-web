@@ -49,6 +49,11 @@ extension User: ModelUser {
     }
 }
 
+extension User: SessionAuthenticatable {
+    typealias SessionID = IDValue
+    var sessionID: IDValue? { id }
+}
+
 extension User.Create: Validatable {
     static func validations(_ validations: inout Validations) {
         validations.add("name", as: String.self, is: !.empty)

@@ -7,35 +7,22 @@ func routes(_ app: Application) throws {
         req.view.render("Root")
     }
 
-    app.get("hello") { req -> String in
-        return "Hello, world!"
-    }
-
-    app.post("users") { req -> EventLoopFuture<User> in
-        try User.Create.validate(req)
-        let create = try req.content.decode(User.Create.self)
-        guard create.password == create.confirmPassword else {
-            throw Abort(.badRequest, reason: "Passwords did not match")
-        }
-        let user = try User(
-            name: create.name,
-            email: create.email,
-            passwordHash: Bcrypt.hash(create.password)
-        )
-        return user.save(on: req.db)
-            .map { user }
-    }
+    /// API  Create User
+    app.post("user", "create", use: UserController.create)
 
     let passwordProtected = app.grouped(User.authenticator().middleware())
-    passwordProtected.post("login") { req -> EventLoopFuture<UserToken> in
-        let user = try req.auth.require(User.self)
-        let token = try user.generateToken()
-        return token.save(on: req.db)
-            .map { token }
-    }
 
+    /// API Login
+    passwordProtected.post("user", "login", use: UserController.login)
+
+    /// Token middleware for API routes
     let tokenProtected = app.grouped(UserToken.authenticator().middleware())
-    tokenProtected.get("me") { req -> User in
-        try req.auth.require(User.self)
-    }
+
+    /// Session user create
+    app.post("create", use: UserController.sessionCreate)
+    /// Session login
+    app.post("login", use: UserController.sessionLogin)
+
+    /// Session middleware for web requests
+    let sessionProtected = app.grouped(app.fluent.sessions.middleware(for: User.self))
 }
