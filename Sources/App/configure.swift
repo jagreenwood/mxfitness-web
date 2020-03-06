@@ -15,6 +15,7 @@ public func configure(_ app: Application) throws {
         database: Environment.get("DATABASE_NAME") ?? "mxfitness"
     ), as: .psql)
 
+    app.middleware.use(SessionsMiddleware(session: app.sessions.driver))
     app.views.use(.leaf)
 
     if !app.environment.isRelease {
