@@ -29,4 +29,7 @@ func routes(_ app: Application) throws {
 
     /// Session middleware for web requests
     let sessionProtected = app.grouped(app.fluent.sessions.middleware(for: User.self))
+
+    /// Admin protected middleware
+    let adminSessionProtected = sessionProtected.grouped(RoleMiddleware(role: .admin))
 }
