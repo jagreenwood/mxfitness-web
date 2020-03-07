@@ -21,7 +21,7 @@ public struct ChallengeCreate: Codable, Equatable {
 
 public struct ChallengeResponse: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
-        case name, users
+        case id, name, users
         case startDate = "start_date"
         case endDate = "end_date"
     }

@@ -17,7 +17,7 @@ final class Workout: Model {
     @Field(key: "duration")
     var duration: TimeInterval
 
-    @Enum(key: "type")
+    @Field(key: "type")
     var type: WorkoutType
 
     @Parent(key: "user_id")

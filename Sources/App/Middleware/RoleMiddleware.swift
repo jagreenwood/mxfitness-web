@@ -11,16 +11,16 @@ import Vapor
 struct RoleMiddleware: Middleware {
     let role: Role
 
-    func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
-        guard let user = try request.authenticated(User.self) else {
-            throw Abort(.unauthorized)
+    func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+        guard let user = try request.auth.get(User.self) else {
+            return request.eventLoop.makeFailedFuture(Abort(.unauthorized))
         }
 
         // Is user role greater then or equal to self.role
         if user.role >= role {
-            return try next.respond(to: request)
+            return next.respond(to: request)
         }
 
-        throw Abort(.unauthorized)
+        return request.eventLoop.makeFailedFuture(Abort(.unauthorized))
     }
 }

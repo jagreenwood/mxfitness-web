@@ -17,6 +17,7 @@ extension User {
                 .id()
                 .field("name", .string, .required)
                 .field("email", .string, .required)
+                .field("role", .string, .required)
                 .field("password_hash", .string, .required)
                 .field("challenge_id", .uuid, .required, .references("challenges", "id"))
                 .unique(on: "email")

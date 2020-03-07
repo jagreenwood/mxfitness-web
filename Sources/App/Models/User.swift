@@ -20,6 +20,9 @@ final class User: Model, Content {
     @Field(key: "email")
     var email: String
 
+    @Field(key: "role")
+    var role: Role
+
     @Field(key: "password_hash")
     var passwordHash: String
 
