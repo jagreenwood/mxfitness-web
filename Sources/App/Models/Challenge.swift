@@ -14,6 +14,9 @@ final class Challenge: Model {
     @ID(key: .id)
     var id: UUID?
 
+    @Field(key: "name")
+    var name: String
+
     @Field(key: "start_date")
     var startDate: Date
 
@@ -28,8 +31,9 @@ final class Challenge: Model {
 
     init() { }
 
-    init(id: UUID? = nil, startDate: Date, endDate: Date) {
+    init(id: UUID? = nil, name: String, startDate: Date, endDate: Date) {
         self.id = id
+        self.name = name
         self.startDate = startDate
         self.endDate = endDate
     }
