@@ -19,3 +19,13 @@ public struct UserResponse: Codable, Equatable {
     public let email: String
 //    public let workouts: [WorkoutResponse]
 }
+
+public struct UserLogin: Codable {
+    public let username: String
+    public let password: String
+
+    public init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
+}

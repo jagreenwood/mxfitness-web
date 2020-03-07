@@ -44,8 +44,14 @@ extension UserController {
     }
 
     static func sessionLogin(_ request: Request) throws -> EventLoopFuture<Response> {
-        throw Abort(.notImplemented)
         /* Handle login via model decoding, authenticate user on request, redirect to user home view */
+        let login = try request.content.decode(UserLogin.self)
+        return User.authenticator().authenticate(basic: BasicAuthorization(username: login.username, password: login.password), for: request)
+            .unwrap(or: Abort(.notFound, reason: "Bad credentials"))
+            .map { user in
+                request.session.authenticate(user)
+                return request.redirect(to: "challenges")
+        }
     }
 }
 
