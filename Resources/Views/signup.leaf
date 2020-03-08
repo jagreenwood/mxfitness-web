@@ -1,1 +1,9 @@
+<!--
 Signup Template
+
+POST Context:
+
+- name
+- username
+- password
+-->
