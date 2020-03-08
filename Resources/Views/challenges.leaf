@@ -1,1 +1,10 @@
+<!--
 Challenge Template
+
+Context:
+- user: User object
+- response:
+    - challenges: Array of Challenge objects
+-->
+
+
