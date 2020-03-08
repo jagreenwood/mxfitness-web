@@ -35,6 +35,8 @@ func routes(_ app: Application) throws {
     sessionProtected.get("challenge", ":id", use: ChallengeController.challengeView)
     /// Session join challenge
     sessionProtected.post("challenge", ":id", "join", use: ChallengeController.sessionJoin)
+    /// Session challenge workouts
+    sessionProtected.get("challenge", ":id", "workouts", use: WorkoutController.challengeWorkoutsView)
 
     /// Admin protected middleware
     let adminSessionProtected = sessionProtected.grouped(RoleMiddleware(role: .admin))

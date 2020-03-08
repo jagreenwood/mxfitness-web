@@ -10,4 +10,5 @@ import Foundation
 enum Arguments {
     static let user = "user"
     static let challenges = "challenges"
+    static let workouts = "workouts"
 }
