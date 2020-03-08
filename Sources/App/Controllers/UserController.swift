@@ -53,6 +53,14 @@ extension UserController {
                 return request.redirect(to: "/challenges")
         }
     }
+
+    static func userView(_ request: Request) throws -> EventLoopFuture<View> {
+        let user = try request.auth.require(User.self)
+
+        return user.$workouts.load(on: request.db)
+            .flatMapThrowing { try user.response() }
+            .flatMap { request.view.render("user", $0) }
+    }
 }
 
 private extension UserController {
