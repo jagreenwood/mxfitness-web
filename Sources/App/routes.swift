@@ -30,7 +30,11 @@ func routes(_ app: Application) throws {
     /// Session middleware for web requests
     let sessionProtected = app.grouped(app.fluent.sessions.middleware(for: User.self))
     /// Render challenges view
-    sessionProtected.get("challenges", use: ChallengeController.challengeView)
+    sessionProtected.get("challenges", use: ChallengeController.challengesView)
+    /// Render challenge view
+    sessionProtected.get("challenge", ":id", use: ChallengeController.challengeView)
+    /// Session join challenge
+    sessionProtected.post("challenge", ":id", "join", use: ChallengeController.sessionJoin)
 
     /// Admin protected middleware
     let adminSessionProtected = sessionProtected.grouped(RoleMiddleware(role: .admin))

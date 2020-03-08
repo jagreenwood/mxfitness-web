@@ -13,7 +13,7 @@ struct ChallengeController { }
 
 /// Session Calls
 extension ChallengeController {
-    static func challengeView(_ request: Request) throws -> EventLoopFuture<View> {
+    static func challengesView(_ request: Request) throws -> EventLoopFuture<View> {
         // authenticate user
         let user = try request.auth.require(User.self)
         // fetch all challenges, transform to responses, build the authResponse, return view future
@@ -22,11 +22,32 @@ extension ChallengeController {
         }.flatMap { request.view.render("challenges", $0) }
     }
 
+    static func challengeView(_ request: Request) throws -> EventLoopFuture<View> {
+        _ = try request.auth.require(User.self)
+
+        return Challenge.find(request.parameters.get("id")!, on: request.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { request.view.render("challenge", $0) }
+    }
+
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
         let create = try request.content.decode(ChallengeCreate.self)
 
         return Challenge(name: create.name, startDate: create.startDate, endDate: create.endDate).save(on: request.db).map {
             request.redirect(to: "challenges")
+        }
+    }
+
+    static func sessionJoin(_ request: Request) throws -> EventLoopFuture<Response> {
+        let user = try request.auth.require(User.self)
+
+        return Challenge.find(request.parameters.get("id"), on: request.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { challenge in
+                user.challenge = challenge
+                return user.save(on: request.db).flatMapThrowing {
+                    try request.redirect(to: "challenge/\(challenge.requireID())")
+                }
         }
     }
 }
