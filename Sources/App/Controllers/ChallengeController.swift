@@ -23,6 +23,10 @@ extension ChallengeController {
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
-        throw Abort(.notImplemented)
+        let create = try request.content.decode(ChallengeCreate.self)
+
+        return Challenge(name: create.name, startDate: create.startDate, endDate: create.endDate).save(on: request.db).map {
+            request.redirect(to: "challenges")
+        }
     }
 }
