@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  User+Client.swift
 //  
 //
 //  Created by Jeremy Greenwood on 3/6/20.
@@ -17,7 +17,8 @@ public struct UserResponse: Codable, Equatable {
     public let id: String
     public let name: String
     public let email: String
-//    public let workouts: [WorkoutResponse]
+    public let role: String
+    public let workouts: [WorkoutResponse]
 }
 
 public struct UserLogin: Codable {
