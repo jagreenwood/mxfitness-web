@@ -41,7 +41,7 @@ extension ChallengeController {
         let create = try request.content.decode(ChallengeCreate.self)
 
         return Challenge(name: create.name, startDate: create.startDate, endDate: create.endDate).save(on: request.db).map {
-            request.redirect(to: "challenges")
+            request.redirect(to: "/challenges")
         }
     }
 
@@ -53,7 +53,7 @@ extension ChallengeController {
             .flatMap { challenge in
                 user.challenge = challenge
                 return user.save(on: request.db).flatMapThrowing {
-                    try request.redirect(to: "challenge/\(challenge.requireID())")
+                    try request.redirect(to: "/challenge/\(challenge.requireID())")
                 }
         }
     }

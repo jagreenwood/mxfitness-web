@@ -35,7 +35,7 @@ extension UserController {
         try createUser(request).map { user in
             request.session.authenticate(user)
 
-            return request.redirect(to: "challenges")
+            return request.redirect(to: "/challenges")
         }
     }
 
@@ -50,7 +50,7 @@ extension UserController {
             .unwrap(or: Abort(.notFound, reason: "Bad credentials"))
             .map { user in
                 request.session.authenticate(user)
-                return request.redirect(to: "challenges")
+                return request.redirect(to: "/challenges")
         }
     }
 }

@@ -21,4 +21,25 @@ extension WorkoutController {
                 request.view.render("challenge_workouts", [Arguments.workouts: $0])
         }
     }
+
+    static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
+        let user = try request.auth.require(User.self)
+        let create = try request.content.decode(WorkoutCreate.self)
+
+        return user.$challenge.load(on: request.db).flatMapThrowing { (Void) -> Workout in
+            guard let challenge = user.challenge else {
+                throw Abort(.custom(code: 500, reasonPhrase: "User has not joined a challenge"))
+            }
+
+            guard let workoutType = WorkoutType(rawValue: create.type) else {
+                throw Abort(.custom(code: 500, reasonPhrase: "\(create.type) is not a supported type"))
+            }
+
+            return try Workout(duration: create.duration, type: workoutType, userID: user.requireID(), challengeID: challenge.requireID())
+        }.flatMapThrowing { foo in
+            try user.requireID()
+        }.map {
+            request.redirect(to: "/users/\($0)/workouts")
+        }
+    }
 }
