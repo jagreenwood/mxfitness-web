@@ -61,6 +61,11 @@ extension UserController {
             .flatMapThrowing { try user.response() }
             .flatMap { request.view.render("user", $0) }
     }
+
+    static func sessionLogout(_ request: Request) throws -> EventLoopFuture<Response> {
+        request.session.unauthenticate(User.self)
+        return request.eventLoop.makeSucceededFuture(request.redirect(to: "/"))
+    }
 }
 
 private extension UserController {
