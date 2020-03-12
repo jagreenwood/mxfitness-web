@@ -12,7 +12,7 @@ struct RoleMiddleware: Middleware {
     let role: Role
 
     func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
-        guard let user = try request.auth.get(User.self) else {
+        guard let user = request.auth.get(User.self) else {
             return request.eventLoop.makeFailedFuture(Abort(.unauthorized))
         }
 
