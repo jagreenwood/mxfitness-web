@@ -37,6 +37,10 @@ extension ChallengeController {
             .flatMap { request.view.render("challenge", $0) }
     }
 
+    static func leaderboardView(_ request: Request) throws -> EventLoopFuture<View> {
+        leaderboard(request).flatMap { request.view.render("leaderboard", $0)}
+    }
+
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
         let create = try request.content.decode(ChallengeCreate.self)
 
@@ -55,6 +59,20 @@ extension ChallengeController {
                 return user.save(on: request.db).flatMapThrowing {
                     try request.redirect(to: "/challenge/\(challenge.requireID())")
                 }
+        }
+    }
+}
+
+private extension ChallengeController {
+    static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
+        ChallengeController.challenge(for: request.parameters.get("id")!, request: request).flatMapThrowing {
+            let groupedWorkouts = Dictionary(grouping: $0.workouts, by: \.user)
+            let leaderboardUsers = groupedWorkouts.map { LeaderboardUser(name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
+
+            let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
+            let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }
+
+            return Leaderboard(totalCount: countSortedUsers, totalDuration: durationSortedUsers)
         }
     }
 }

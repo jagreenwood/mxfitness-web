@@ -38,6 +38,7 @@ final class User: Model, Content {
         self.id = id
         self.name = name
         self.email = email
+        self.role = role
         self.passwordHash = passwordHash
     }
 
@@ -61,4 +62,16 @@ extension User: ModelUser {
 extension User: SessionAuthenticatable {
     typealias SessionID = IDValue
     var sessionID: IDValue? { id }
+}
+
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension User: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

@@ -35,6 +35,8 @@ func routes(_ app: Application) throws {
     sessionProtected.get("challenge", ":id", use: ChallengeController.challengeView)
     /// Render challenge workouts
     sessionProtected.get("challenge", ":id", "workouts", use: WorkoutController.challengeWorkoutsView)
+    /// Render challenge leaderboard
+    sessionProtected.get("challenge", ":id", "leaderboard", use: ChallengeController.leaderboardView)
     /// Render user view
     sessionProtected.get("user", use: UserController.userView)
     /// Session join challenge
