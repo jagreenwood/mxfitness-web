@@ -18,7 +18,7 @@ final class Workout: Model {
     var duration: TimeInterval
 
     @Field(key: "type")
-    var type: WorkoutType
+    var type: String
 
     @Parent(key: "user_id")
     var user: User
@@ -28,7 +28,7 @@ final class Workout: Model {
 
     init() { }
 
-    init(id: UUID? = nil, duration: TimeInterval, type: WorkoutType, userID: User.IDValue, challengeID: Challenge.IDValue) {
+    init(id: UUID? = nil, duration: TimeInterval, type: String, userID: User.IDValue, challengeID: Challenge.IDValue) {
         self.id = id
         self.duration = duration
         self.type = type

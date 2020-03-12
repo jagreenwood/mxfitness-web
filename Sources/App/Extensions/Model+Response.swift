@@ -40,6 +40,6 @@ extension Array where Element == Workout {
 
 extension Workout {
     func response() throws -> WorkoutResponse {
-        try WorkoutResponse(id: requireID().uuidString, duration: duration, type: type.rawValue, user: user.response(), challenge: challenge.response())
+        try WorkoutResponse(id: requireID().uuidString, duration: duration, type: type, user: user.response(), challenge: challenge.response())
     }
 }

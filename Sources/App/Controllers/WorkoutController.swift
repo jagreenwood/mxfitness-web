@@ -31,11 +31,7 @@ extension WorkoutController {
                 throw Abort(.custom(code: 500, reasonPhrase: "User has not joined a challenge"))
             }
 
-            guard let workoutType = WorkoutType(rawValue: create.type) else {
-                throw Abort(.custom(code: 500, reasonPhrase: "\(create.type) is not a supported type"))
-            }
-
-            return try Workout(duration: create.duration, type: workoutType, userID: user.requireID(), challengeID: challenge.requireID())
+            return try Workout(duration: create.duration, type: create.type, userID: user.requireID(), challengeID: challenge.requireID())
         }.flatMapThrowing { foo in
             try user.requireID()
         }.map {
