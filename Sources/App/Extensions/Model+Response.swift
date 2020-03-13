@@ -27,8 +27,8 @@ extension Array where Element == User {
 
 extension User {
     func response() throws -> UserResponse {
-        try UserResponse(id: requireID().uuidString, name: name, email: email, role: role.rawValue, totalWorkoutCount: workouts.count,
-                         totalWorkoutDuration: workouts.totalDuration, workouts: workouts.responses())
+        try UserResponse(id: requireID().uuidString, name: name, email: email, role: role.rawValue, totalWorkoutCount: $workouts.wrappedValue.count,
+                         totalWorkoutDuration: $workouts.wrappedValue.totalDuration, workouts: $workouts.wrappedValue.responses())
     }
 }
 

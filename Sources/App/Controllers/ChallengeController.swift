@@ -24,10 +24,13 @@ extension ChallengeController {
     static func challengesView(_ request: Request) throws -> EventLoopFuture<View> {
         // authenticate user
         let user = try request.auth.require(User.self)
-        // fetch all challenges, transform to responses, build the authResponse, return view future
-        return Challenge.query(on: request.db).with(\.$users).all().flatMapEachCompactThrowing { try $0.response() }.flatMapThrowing { responses in
-            try AuthenticatedResponse(user: user.response(), response: [Arguments.challenges: responses])
-        }.flatMap { request.view.render("challenges", $0) }
+
+        // load workouts on user
+        return user.$workouts.load(on: request.db).flatMap {
+            Challenge.query(on: request.db).with(\.$users).all().flatMapEachCompactThrowing { try $0.response() }.flatMapThrowing { responses in
+                try AuthenticatedResponse(user: user.response(), response: [Arguments.challenges: responses])
+            }.flatMap { request.view.render("challenges", $0) }
+        }
     }
 
     static func challengeView(_ request: Request) throws -> EventLoopFuture<View> {
