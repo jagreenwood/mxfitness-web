@@ -27,6 +27,16 @@ public func configure(_ app: Application) throws {
     app.migrations.add(UserToken.Migration())
     app.migrations.add(Workout.Migration())
 
+    // set up commands
+    app.commands.use(CreateCommandGroup(), as: CreateCommandGroup.name)
+
+    // create a new JSON encoder that uses unix-timestamp dates
+    let encoder = JSONEncoder()
+    encoder.dateEncodingStrategy = .secondsSince1970
+
+    // override the global encoder used for the `.json` media type
+    ContentConfiguration.global.use(encoder: encoder, for: .json)
+
     // register routes
     try routes(app)
 }
