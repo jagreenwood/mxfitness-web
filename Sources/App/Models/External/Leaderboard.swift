@@ -9,8 +9,8 @@ import Foundation
 
 public struct Leaderboard: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
-        case totalCount = "total_count"
-        case totalDuration = "total_duration"
+        case totalCount = "total_count_users"
+        case totalDuration = "total_duration_users"
     }
 
     public let totalCount: [LeaderboardUser]
@@ -19,11 +19,12 @@ public struct Leaderboard: Codable, Equatable {
 
 public struct LeaderboardUser: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
-        case name
+        case id, name
         case totalWorkoutCount = "total_workout_count"
         case totalWorkoutDuration = "total_workout_duration"
     }
 
+    public let id: UUID
     public let name: String
     public let totalWorkoutCount: Int
     public let totalWorkoutDuration: TimeInterval

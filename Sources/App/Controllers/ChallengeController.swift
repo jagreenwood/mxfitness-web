@@ -70,7 +70,7 @@ private extension ChallengeController {
     static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
         ChallengeController.challenge(for: request.parameters.get("id")!, request: request).flatMapThrowing {
             let groupedWorkouts = Dictionary(grouping: $0.workouts, by: \.user)
-            let leaderboardUsers = groupedWorkouts.map { LeaderboardUser(name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
+            let leaderboardUsers = try groupedWorkouts.map { try LeaderboardUser(id: $0.requireID(), name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
 
             let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
             let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }
