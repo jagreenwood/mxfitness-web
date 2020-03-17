@@ -49,8 +49,6 @@ final class CreateUserCommand: Command {
             return role
         }
 
-        let copy = try String(Bcrypt.hash(signature.password))
-
         app.logger.notice("Creating user...")
         let user = try User(name: signature.name, email: signature.email, role: role,
                             passwordHash: Bcrypt.hash(signature.password))
