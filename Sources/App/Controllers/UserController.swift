@@ -35,7 +35,7 @@ extension UserController {
         try createUser(request).map { user in
             request.session.authenticate(user)
 
-            return request.redirect(to: "/challenges")
+            return request.redirect(to: "/")
         }
     }
 
@@ -48,7 +48,7 @@ extension UserController {
         do {
             let user = try request.auth.require(User.self)
             request.session.authenticate(user)
-            return request.eventLoop.makeSucceededFuture(request.redirect(to: "/challenges"))
+            return request.eventLoop.makeSucceededFuture(request.redirect(to: "/"))
         } catch {
             return request.eventLoop.makeFailedFuture(Abort(.notFound, reason: "Bad credentials"))
         }

@@ -3,8 +3,17 @@ import Vapor
 import Leaf
 
 func routes(_ app: Application) throws {
-    app.get { req in
-        req.view.render("root")
+    app.get { request -> EventLoopFuture<Response> in
+        var redirect: Response {
+            do {
+                let user = try request.auth.require(User.self)
+                return try request.redirect(to: "/user/\(user.requireID())")
+            } catch {
+                return request.redirect(to: "login")
+            }
+        }
+
+        return request.eventLoop.makeSucceededFuture(redirect)
     }
 
     /// API  Create User
