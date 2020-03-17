@@ -3,9 +3,6 @@ User Template
 
 Context:
 
-- id
-- name
-- start_date
-- end_date
-- users
+- user -> Auth'd User Object
+- response -> User Object
 -->
