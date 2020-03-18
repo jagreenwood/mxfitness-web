@@ -41,8 +41,6 @@ extension UserController {
 
     static func sessionSignup(_ request: Request) throws -> EventLoopFuture<Response> {
         try createUser(request).flatMap { user in
-            request.session.authenticate(user)
-
             // query for active challenge and set it on user
             return ChallengeController.activeChallenge(request: request).flatMap { challenge in
                 if challenge == nil {
@@ -50,8 +48,9 @@ extension UserController {
                 }
 
                 // optional challenge, want to break signup and throw an error
-                user.$challenge.id = challenge?.id
+                user.$challenge.id = id
 
+                request.session.authenticate(user)
                 return user.save(on: request.db)
             }.map { request.redirect(to: "/") }
         }
