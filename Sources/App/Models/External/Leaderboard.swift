@@ -9,10 +9,12 @@ import Foundation
 
 public struct Leaderboard: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
+        case name
         case totalCount = "total_count_users"
         case totalDuration = "total_duration_users"
     }
 
+    public let name: String
     public let totalCount: [LeaderboardUser]
     public let totalDuration: [LeaderboardUser]
 }

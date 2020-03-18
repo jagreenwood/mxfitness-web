@@ -88,7 +88,7 @@ private extension ChallengeController {
             let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
             let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }
 
-            return Leaderboard(totalCount: countSortedUsers, totalDuration: durationSortedUsers)
+            return Leaderboard(name: $0.name, totalCount: countSortedUsers, totalDuration: durationSortedUsers)
         }
     }
 }
