@@ -17,6 +17,15 @@ struct ChallengeController {
             .first()
             .unwrap(or: Abort(.notFound))
     }
+
+    static func activeChallenge(request: Request) -> EventLoopFuture<Challenge?> {
+        // Just sort on start date and get the first one for now. When more challenges are added, we'll need better filters and validation
+        Challenge.query(on: request.db)
+            .with(\.$workouts)
+            .with(\.$users)
+            .sort(\.$startDate)
+            .first()
+    }
 }
 
 /// Session Calls
