@@ -1,23 +1,11 @@
 //
-//  File.swift
+//  CreateUserCommand.swift
 //  
 //
-//  Created by Jeremy Greenwood on 3/13/20.
+//  Created by Jeremy Greenwood on 3/18/20.
 //
 
 import Vapor
-
-final class CreateCommandGroup: CommandGroup {
-    static var name = "create"
-
-    let help = "Create new platform objects"
-
-    var commands: [String : AnyCommand] = [CreateUserCommand.name: CreateUserCommand()]
-
-    var defaultCommand: AnyCommand? {
-        self.commands[CreateUserCommand.name]
-    }
-}
 
 final class CreateUserCommand: Command {
     struct Signature: CommandSignature {
