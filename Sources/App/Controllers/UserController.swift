@@ -9,7 +9,15 @@ import Fluent
 import Vapor
 import Leaf
 
-struct UserController { }
+struct UserController {
+    static func user(for id: UUID, request: Request) -> EventLoopFuture<User> {
+        User.query(on: request.db) // `find()` doesn't return query builder so can't eager load. Is there a better way?
+            .with(\.$workouts)
+            .filter(\._$id == id)
+            .first()
+            .unwrap(or: Abort(.notFound))
+    }
+}
 
 /// API Calls
 extension UserController {
@@ -54,12 +62,11 @@ extension UserController {
         }
     }
 
-    static func userView(_ request: Request) throws -> EventLoopFuture<View> {
-        let user = try request.auth.require(User.self)
+    static func userForIDView(_ request: Request) throws -> EventLoopFuture<View> {
+        let authUser = try request.auth.require(User.self)
 
-        return user.$workouts.load(on: request.db)
-            .flatMapThrowing { try user.response() }
-            .flatMap { request.view.render("user", $0) }
+        return user(for: request.parameters.get("id")!, request: request).flatMapThrowing { try (authUser.response(), $0.response()) }
+            .flatMap { request.view.render("user", AuthenticatedResponse(user: $0, response: $1)) }
     }
 
     static func sessionLogout(_ request: Request) throws -> EventLoopFuture<Response> {

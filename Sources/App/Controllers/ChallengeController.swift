@@ -34,9 +34,7 @@ extension ChallengeController {
     }
 
     static func challengeView(_ request: Request) throws -> EventLoopFuture<View> {
-        _ = try request.auth.require(User.self)
-
-        return challenge(for: request.parameters.get("id")!, request: request)
+        challenge(for: request.parameters.get("id")!, request: request)
             .flatMap { request.view.render("challenge", $0) }
     }
 
