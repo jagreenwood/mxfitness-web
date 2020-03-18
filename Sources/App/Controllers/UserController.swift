@@ -50,7 +50,7 @@ extension UserController {
                 }
 
                 // optional challenge, want to break signup and throw an error
-                user.challenge = challenge
+                user.$challenge.id = challenge?.id
 
                 return user.save(on: request.db)
             }.map { request.redirect(to: "/") }
