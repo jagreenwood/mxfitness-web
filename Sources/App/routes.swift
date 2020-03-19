@@ -3,6 +3,11 @@ import Vapor
 import Leaf
 
 func routes(_ app: Application) throws {
+    try sessionRoutes(app)
+    try apiRoutes(app)
+}
+
+func sessionRoutes(_ app: Application) throws {
     app.get { request -> EventLoopFuture<Response> in
         var redirect: Response {
             do {
@@ -15,14 +20,6 @@ func routes(_ app: Application) throws {
 
         return request.eventLoop.makeSucceededFuture(redirect)
     }
-
-    /// API  Create User
-    app.post("user", "create", use: UserController.signup)
-
-    let tokenProtected = app.grouped(UserToken.authenticator().middleware())
-
-    /// API Login
-    tokenProtected.post("user", "login", use: UserController.login)
 
     /// Session middleware for web requests
     let passwordProtected = app.grouped(User.authenticator().middleware())
@@ -61,4 +58,15 @@ func routes(_ app: Application) throws {
     let adminSessionProtected = sessionProtected.grouped(RoleMiddleware(role: .admin))
     /// Session challenge create
     adminSessionProtected.post("challenges", use: ChallengeController.sessionCreate)
+}
+
+func apiRoutes(_ app: Application) throws {
+    let apiV1 = app.grouped("api", "v1")
+    /// API  Create User
+    apiV1.post("signup", use: UserController.signup)
+
+    let tokenProtected = apiV1.grouped(UserToken.authenticator().middleware())
+
+    /// API Login
+    tokenProtected.post("login", use: UserController.login)
 }
