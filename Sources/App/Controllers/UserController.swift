@@ -48,7 +48,7 @@ extension UserController {
                 }
 
                 // optional challenge, want to break signup and throw an error
-                user.$challenge.id = id
+                user.$challenge.id = challenge?.id
 
                 request.session.authenticate(user)
                 return user.save(on: request.db)
