@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Vapor
 
 extension Array where Element == Challenge {
     func responses() throws -> [ChallengeResponse] {
@@ -27,7 +28,11 @@ extension Array where Element == User {
 
 extension User {
     func response() throws -> UserResponse {
-        try UserResponse(id: requireID().uuidString, name: name, email: email, role: role.rawValue, totalWorkoutCount: $workouts.wrappedValue.count,
+        guard let md5 = email.md5, let avatar = URL(string: "https://www.gravatar.com/avatar/\(md5)?s=200") else {
+            throw Abort(.internalServerError)
+        }
+
+        return try UserResponse(id: requireID().uuidString, name: name, email: email, avatar: avatar, role: role.rawValue, totalWorkoutCount: $workouts.wrappedValue.count,
                          totalWorkoutDuration: $workouts.wrappedValue.totalDuration, workouts: $workouts.wrappedValue.responses())
     }
 }

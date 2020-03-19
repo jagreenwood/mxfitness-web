@@ -15,7 +15,7 @@ public struct UserCreate: Codable, Equatable {
 
 public struct UserResponse: Codable, Equatable {
     public enum CodingKeys: String, CodingKey {
-        case id, name, email, role, workouts
+        case id, name, email, avatar, role, workouts
         case totalWorkoutCount = "total_workout_count"
         case totalWorkoutDuration = "total_workout_duration"
     }
@@ -23,6 +23,7 @@ public struct UserResponse: Codable, Equatable {
     public let id: String
     public let name: String
     public let email: String
+    public let avatar: URL
     public let role: String
     public let totalWorkoutCount: Int
     public let totalWorkoutDuration: TimeInterval
