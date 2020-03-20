@@ -72,4 +72,6 @@ func apiRoutes(_ app: Application) throws {
     let tokenProtected = apiV1.grouped(UserToken.authenticator().middleware())
     /// POST Workout
     tokenProtected.post("workout", use: WorkoutController.create)
+    /// GET Leaderboard
+    tokenProtected.get("leaderboard", use: ChallengeController.leaderboard)
 }

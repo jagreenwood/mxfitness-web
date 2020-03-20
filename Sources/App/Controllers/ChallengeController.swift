@@ -12,7 +12,8 @@ import Leaf
 struct ChallengeController {
     static func challenge(for id: UUID, request: Request) -> EventLoopFuture<Challenge> {
         Challenge.query(on: request.db) // `find()` doesn't return query builder so can't eager load. Is there a better way?
-            .with(\.$workouts).with(\.$users)
+            .with(\.$workouts)
+            .with(\.$users)
             .filter(\._$id == id)
             .first()
             .unwrap(or: Abort(.notFound, reason: "Challenge not found."))
@@ -25,6 +26,14 @@ struct ChallengeController {
             .with(\.$users)
             .sort(\.$startDate)
             .first()
+    }
+}
+
+extension ChallengeController {
+    static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
+        activeChallenge(request: request).unwrap(or: Abort(.notFound, reason: "Challenge Not Found.")).flatMapThrowing {
+            try leaderboard(for: $0.requireID(), request: request)
+        }.flatMap { $0 }
     }
 }
 
@@ -82,14 +91,19 @@ extension ChallengeController {
 
 private extension ChallengeController {
     static func leaderboard(for challengeID: UUID, request: Request) -> EventLoopFuture<Leaderboard> {
-        ChallengeController.challenge(for: challengeID, request: request).flatMapThrowing {
-            let groupedWorkouts = Dictionary(grouping: $0.workouts, by: \.user)
+        ChallengeController.challenge(for: challengeID, request: request).map { challenge in
+            challenge.workouts.map { $0.$user.load(on: request.db) }.flatten(on: request.eventLoop)
+                .map { challenge }
+        }
+        .flatMap { $0 }
+        .flatMapThrowing { challenge -> Leaderboard in
+            let groupedWorkouts = Dictionary(grouping: challenge.workouts, by: \.user)
             let leaderboardUsers = try groupedWorkouts.map { try LeaderboardUser(id: $0.requireID(), name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
 
             let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
             let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }
 
-            return Leaderboard(name: $0.name, totalCount: countSortedUsers, totalDuration: durationSortedUsers)
+            return Leaderboard(name: challenge.name, totalCount: countSortedUsers, totalDuration: durationSortedUsers)
         }
     }
 }
