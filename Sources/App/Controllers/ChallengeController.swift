@@ -31,9 +31,10 @@ struct ChallengeController {
 
 extension ChallengeController {
     static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
-        activeChallenge(request: request).unwrap(or: Abort(.notFound, reason: "Challenge Not Found.")).flatMapThrowing {
-            try leaderboard(for: $0.requireID(), request: request)
-        }.flatMap { $0 }
+        activeChallenge(request: request)
+            .unwrap(or: Abort(.notFound, reason: "Challenge Not Found."))
+            .flatMapThrowing { try leaderboard(for: $0.requireID(), request: request) }
+            .flatMap { $0 }
     }
 }
 
@@ -58,13 +59,14 @@ extension ChallengeController {
     }
 
     static func leaderboardViewRedirect(_ request: Request) throws -> EventLoopFuture<Response> {
-        activeChallenge(request: request).unwrap(or: Abort(.notFound, reason: "Challenge not found.")).flatMapThrowing {
-            try request.redirect(to: "/challenge/\($0.requireID())/leaderboard")
-        }
+        activeChallenge(request: request)
+            .unwrap(or: Abort(.notFound, reason: "Challenge not found."))
+            .flatMapThrowing { try request.redirect(to: "/challenge/\($0.requireID())/leaderboard") }
     }
 
     static func leaderboardView(_ request: Request) throws -> EventLoopFuture<View> {
-        leaderboard(for: request.parameters.get("id")!, request: request).flatMap { request.view.render("leaderboard", $0)}
+        leaderboard(for: request.parameters.get("id")!, request: request)
+            .flatMap { request.view.render("leaderboard", $0)}
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {

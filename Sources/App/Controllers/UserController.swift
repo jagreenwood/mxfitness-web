@@ -42,17 +42,18 @@ extension UserController {
     static func sessionSignup(_ request: Request) throws -> EventLoopFuture<Response> {
         try createUser(request).flatMap { user in
             // query for active challenge and set it on user
-            return ChallengeController.activeChallenge(request: request).flatMap { challenge in
-                if challenge == nil {
-                    request.logger.notice("No active challenge to link to user")
-                }
+            return ChallengeController.activeChallenge(request: request)
+                .flatMap { challenge in
+                    if challenge == nil {
+                        request.logger.notice("No active challenge to link to user")
+                    }
 
-                // optional challenge, want to break signup and throw an error
-                user.$challenge.id = challenge?.id
+                    // optional challenge, want to break signup and throw an error
+                    user.$challenge.id = challenge?.id
 
-                request.session.authenticate(user)
-                return user.save(on: request.db)
-            }.map { request.redirect(to: "/") }
+                    request.session.authenticate(user)
+                    return user.save(on: request.db) }
+                .map { request.redirect(to: "/") }
         }
     }
 
@@ -73,7 +74,6 @@ extension UserController {
 
     static func userForIDView(_ request: Request) throws -> EventLoopFuture<View> {
         let authUser = try request.auth.require(User.self)
-
         let promise = request.eventLoop.makePromise(of: AuthenticatedResponse<UserResponse>.self)
 
         DispatchQueue.global().async {
