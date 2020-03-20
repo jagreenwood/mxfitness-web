@@ -17,7 +17,7 @@ extension WorkoutController {
         _ = try request.auth.require(User.self)
 
         return ChallengeController.challenge(for: request.parameters.get("id")!, request: request)
-            .flatMapThrowing { try $0.workouts.responses() }.flatMap {
+            .flatMapThrowing { try $0.workouts.responses(request) }.flatMap { $0 }.flatMap {
                 request.view.render("challenge_workouts", [Arguments.workouts: $0])
         }
     }
@@ -33,8 +33,8 @@ extension WorkoutController {
 extension WorkoutController {
     static func create(_ request: Request) throws -> EventLoopFuture<WorkoutResponse> {
         try createWorkout(request).flatMapThrowing {
-            try $0.response()
-        }
+            try $0.response(request)
+        }.flatMap { $0 }
     }
 }
 

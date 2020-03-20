@@ -16,38 +16,54 @@ extension Array where Element == Challenge {
 
 extension Challenge {
     func response(_ request: Request) throws -> EventLoopFuture<ChallengeResponse> {
-        $users.load(on: request.db).flatMapThrowing { [unowned self] in
-            try ChallengeResponse(id: self.requireID().uuidString, name: self.name, startDate: self.startDate, endDate: self.endDate, users: self.users.responses())
+        $users.load(on: request.db)
+            .flatMapThrowing { try self.users.responses(request) }.flatMap { $0 }
+            .flatMapThrowing {
+                try ChallengeResponse(id: self.requireID().uuidString, name: self.name, startDate: self.startDate, endDate: self.endDate, users: $0)
         }
     }
 }
 
 extension Array where Element == User {
-    func responses() throws -> [UserResponse] {
-        return try map { try $0.response() }
+    func responses(_ request: Request) throws -> EventLoopFuture<[UserResponse]> {
+        return try map { try $0.response(request) }.flatten(on: request.eventLoop)
     }
 }
 
 extension User {
-    func response() throws -> UserResponse {
+    func response(_ request: Request) throws -> EventLoopFuture<UserResponse> {
         guard let md5 = email.md5, let avatar = URL(string: "https://www.gravatar.com/avatar/\(md5)?s=200") else {
             throw Abort(.internalServerError)
         }
 
-        return try UserResponse(id: requireID().uuidString, name: name, email: email, avatar: avatar, role: role.rawValue, totalWorkoutCount: $workouts.wrappedValue.count,
-                         totalWorkoutDuration: $workouts.wrappedValue.totalDuration, workouts: $workouts.wrappedValue.responses())
+        return $workouts.load(on: request.db).flatMapThrowing {
+            try UserResponse(id: self.requireID().uuidString,
+                             name: self.name,
+                             email: self.email,
+                             avatar: avatar,
+                             role: self.role.rawValue,
+                             totalWorkoutCount: self.workouts.count,
+                             totalWorkoutDuration: self.workouts.totalDuration)
+        }
     }
 }
 
 extension Array where Element == Workout {
-    func responses() throws -> [WorkoutResponse] {
-        return try map { try $0.response() }
+    func responses(_ request: Request) throws -> EventLoopFuture<[WorkoutResponse]> {
+        return try map { try $0.response(request) }.flatten(on: request.eventLoop)
     }
 }
 
 extension Workout {
-    func response() throws -> WorkoutResponse {
-        try WorkoutResponse(id: requireID().uuidString, duration: duration, type: type, user: user.response())
+    func response(_ request: Request) throws -> EventLoopFuture<WorkoutResponse> {
+        $user.load(on: request.db)
+            .flatMapThrowing { try self.user.response(request) }.flatMap { $0 }
+            .flatMapThrowing {
+                try WorkoutResponse(id: self.requireID().uuidString,
+                                    duration: self.duration,
+                                    type: self.type,
+                                    user: $0)
+        }
     }
 }
 

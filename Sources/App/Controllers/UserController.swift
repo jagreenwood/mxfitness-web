@@ -74,8 +74,20 @@ extension UserController {
     static func userForIDView(_ request: Request) throws -> EventLoopFuture<View> {
         let authUser = try request.auth.require(User.self)
 
-        return user(for: request.parameters.get("id")!, request: request).flatMapThrowing { try (authUser.response(), $0.response()) }
-            .flatMap { request.view.render("user", AuthenticatedResponse(user: $0, response: $1)) }
+        let promise = request.eventLoop.makePromise(of: AuthenticatedResponse<UserResponse>.self)
+
+        DispatchQueue.global().async {
+            do {
+                let userResponse = try user(for: request.parameters.get("id")!, request: request).wait().response(request).wait()
+                let authUserResponse = try authUser.response(request).wait()
+
+                promise.succeed(AuthenticatedResponse(user: authUserResponse, response: userResponse))
+            } catch {
+                promise.fail(error)
+            }
+        }
+
+        return promise.futureResult.flatMap { request.view.render("user", $0) }
     }
 
     static func sessionLogout(_ request: Request) throws -> EventLoopFuture<Response> {
