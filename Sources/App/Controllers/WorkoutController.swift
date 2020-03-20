@@ -23,19 +23,49 @@ extension WorkoutController {
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
-        let user = try request.auth.require(User.self)
-        let create = try request.content.decode(WorkoutCreate.self)
-
-        return user.$challenge.load(on: request.db).flatMapThrowing { (Void) -> Workout in
-            guard let challenge = user.challenge else {
-                throw Abort(.custom(code: 500, reasonPhrase: "User has not joined a challenge"))
-            }
-
-            return try Workout(duration: create.duration, type: create.type, userID: user.requireID(), challengeID: challenge.requireID())
-        }.flatMapThrowing { foo in
-            try user.requireID()
-        }.map {
+        try createWorkout(request).map {
             request.redirect(to: "/users/\($0)/workouts")
         }
+    }
+}
+
+/// API calls
+extension WorkoutController {
+    static func create(_ request: Request) throws -> EventLoopFuture<WorkoutResponse> {
+        try createWorkout(request).flatMapThrowing {
+            try $0.response()
+        }
+    }
+}
+
+private extension WorkoutController {
+    static func createWorkout(_ request: Request) throws -> EventLoopFuture<Workout> {
+        let user = try request.auth.require(User.self)
+        let workoutCreate = try request.content.decode(WorkoutCreate.self)
+
+        let promise = request.eventLoop.makePromise(of: Workout.self)
+
+        DispatchQueue.global().async {
+            do {
+                try user.$challenge.load(on: request.db).wait()
+
+                guard let challenge = user.challenge else {
+                    throw Abort(.custom(code: 500, reasonPhrase: "User has not joined a challenge"))
+                }
+
+                let workout = try Workout(duration: workoutCreate.duration,
+                                          type: workoutCreate.type,
+                                          userID: user.requireID(),
+                                          challengeID: challenge.requireID())
+
+                try workout.save(on: request.db).wait()
+                try workout.$user.load(on: request.db).wait()
+                promise.succeed(workout)
+            } catch {
+                promise.fail(error)
+            }
+        }
+
+        return promise.futureResult.map { $0 }
     }
 }

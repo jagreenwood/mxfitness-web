@@ -65,8 +65,11 @@ func apiRoutes(_ app: Application) throws {
     /// API  Create User
     apiV1.post("signup", use: UserController.signup)
 
-    let tokenProtected = apiV1.grouped(UserToken.authenticator().middleware())
-
+    let passwordProtected = apiV1.grouped(User.authenticator().middleware())
     /// API Login
-    tokenProtected.post("login", use: UserController.login)
+    passwordProtected.post("login", use: UserController.login)
+
+    let tokenProtected = apiV1.grouped(UserToken.authenticator().middleware())
+    /// POST Workout
+    tokenProtected.post("workout", use: WorkoutController.create)
 }

@@ -8,3 +8,5 @@
 import Vapor
 
 extension UserResponse: Content { }
+extension WorkoutResponse: Content { }
+extension TokenResponse: Content { }

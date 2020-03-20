@@ -18,13 +18,11 @@ public struct WorkoutCreate: Codable {
 
 public struct WorkoutResponse: Codable, Equatable {
     private enum CodingKeys: String, CodingKey {
-        case id, duration, type
-        case user, challenge
+        case id, duration, type, user
     }
 
     public let id: String
     public let duration: TimeInterval
     public let type: String
     public let user: UserResponse
-    public let challenge: ChallengeResponse
 }
