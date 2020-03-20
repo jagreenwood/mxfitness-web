@@ -36,9 +36,10 @@ extension ChallengeController {
 
         // load workouts on user
         return user.$workouts.load(on: request.db).flatMap {
-            Challenge.query(on: request.db).with(\.$users).all().flatMapEachCompactThrowing { try $0.response() }.flatMapThrowing { responses in
-                try AuthenticatedResponse(user: user.response(), response: [Arguments.challenges: responses])
-            }.flatMap { request.view.render("challenges", $0) }
+            Challenge.query(on: request.db).all()
+                .flatMapThrowing { try $0.responses(request) }
+                .map { $0 }.flatMap { $0 }
+                .flatMap { request.view.render("challenges", $0) }
         }
     }
 

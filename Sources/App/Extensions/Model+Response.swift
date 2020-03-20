@@ -9,14 +9,16 @@ import Foundation
 import Vapor
 
 extension Array where Element == Challenge {
-    func responses() throws -> [ChallengeResponse] {
-        return try map { try $0.response() }
+    func responses(_ request: Request) throws -> EventLoopFuture<[ChallengeResponse]> {
+        return try map { try $0.response(request) }.flatten(on: request.eventLoop)
     }
 }
 
 extension Challenge {
-    func response() throws -> ChallengeResponse {
-        try ChallengeResponse(id: requireID().uuidString, name: name, startDate: startDate, endDate: endDate, users: users.responses())
+    func response(_ request: Request) throws -> EventLoopFuture<ChallengeResponse> {
+        $users.load(on: request.db).flatMapThrowing { [unowned self] in
+            try ChallengeResponse(id: self.requireID().uuidString, name: self.name, startDate: self.startDate, endDate: self.endDate, users: self.users.responses())
+        }
     }
 }
 
