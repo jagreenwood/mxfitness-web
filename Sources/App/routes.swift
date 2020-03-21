@@ -21,9 +21,6 @@ func sessionRoutes(_ app: Application) throws {
         return request.eventLoop.makeSucceededFuture(redirect)
     }
 
-    /// Session middleware for web requests
-    let passwordProtected = app.grouped(User.authenticator().middleware())
-
     /// Render signup
     app.get("signup", use: UserController.signupView)
     /// Render login
