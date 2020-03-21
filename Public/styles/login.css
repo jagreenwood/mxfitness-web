@@ -1,0 +1,73 @@
+@import url(//db.onlinewebfonts.com/c/3b7ae3b725a8d7bcc2e2d9459d5d30f7?family=Depot+New);
+
+
+
+
+html, body {
+    height: 100%;
+}
+
+* {
+    font-family: "Depot New", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+img {
+    height: 96px;
+    padding: 20px;
+}
+
+.card {
+    width: 450px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+form {
+    width: 100%;
+}
+
+.row {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 80%;
+   height: 40px;
+}
+
+.btn {
+    width: 50%;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+
+    .btn, input {
+        border: 1px solid #bfbfbf;
+        background-color: #fff;    
+    }
+
+    .btn {
+        background-color: #f3f3f3;
+    }
+}

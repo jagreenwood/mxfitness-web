@@ -1,3 +1,4 @@
+
 <!--
 Login Template
 
@@ -6,3 +7,24 @@ POST Context:
 - username
 - password
 -->
+<link rel="stylesheet" type="text/css" href="styles/login.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="card">
+    <img src="images/company-logo.png">
+    <form action="/login" method="POST">
+        <div class="row">
+            <input type="username" name="username" id="email" placeholder="Email" />
+        </div>
+        <div class="row">
+            <input type="password" name="password" id="password" placeholder="Password" />
+        </div>
+        <div class="row">
+            <input type="submit" class="btn" value="Login" />
+        </div>
+         <div class="row">
+             <a href="/signup">Create Account</a>
+        </div>
+    </form>
+</div>
+
+
