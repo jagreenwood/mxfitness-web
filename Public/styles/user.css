@@ -1,0 +1,143 @@
+@import url(//db.onlinewebfonts.com/c/3b7ae3b725a8d7bcc2e2d9459d5d30f7?family=Depot+New);
+
+* {
+    font-family: "Depot New", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.nav {
+    overflow: hidden;
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: #000;
+    height: 40px
+}
+
+.nav-cell {
+    width: 80%;
+    margin: auto;
+}
+
+.nav-item {
+    color: #fff;
+    margin: auto;
+    padding: 10px;
+    float: right;
+    text-decoration: none;
+}
+
+img {
+    height: 120px;
+    border-radius: 100%;
+}
+
+.background {
+    background-color: #ebebeb;
+    width: 100%;
+}
+
+.top {
+    width: 50%;
+}
+
+.top-content, .bottom-content {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+    padding: 40px;
+}
+
+.top-content-right {
+    margin-left: 40px;
+}
+
+.user-info {
+    padding: 5px;
+}
+
+.top-content-left {
+    margin-left: 96px;
+}
+
+.bottom {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    margin-top: 96px;
+}
+
+.bottom-content {
+    flex-direction: column;
+    text-align: center;
+}
+
+.bottom-content-left, .bottom-content-right {
+    width: 50%;
+}
+
+.stats-container {
+    padding: 25px;
+}
+
+.stats {
+    text-align: center;
+}
+
+p, h1 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.bold {
+    font-weight: bold;
+    font-weight: 18px;
+}
+
+button {
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+    .top, .bottom {
+        width: 100%
+    }
+    
+    .top-content, .bottom-content {
+        width: max-content;
+    }
+
+    .top-content-right, .top-content-left, .bottom-content-left, .bottom-content-right {
+        margin: auto;
+    }
+
+    .top-content-left {
+        margin-right: 32px;
+        margin-left: -32px;
+    }
+
+    .bottom {
+        flex-direction: column-reverse;
+        margin-top: 10px;
+    }
+    
+    button {
+        display: flex;
+        margin: 15 auto;
+        border: 1px solid grey;
+        padding: 13px;
+        background-color: #f3f3f3;
+        border: 1px solid #bfbfbf;
+        float: none;
+    }
+   
+}
