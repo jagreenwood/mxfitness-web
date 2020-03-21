@@ -9,16 +9,13 @@ func routes(_ app: Application) throws {
 
 func sessionRoutes(_ app: Application) throws {
     app.get { request -> EventLoopFuture<Response> in
-        var redirect: Response {
-            do {
-                let user = try request.auth.require(User.self)
-                return try request.redirect(to: "/user/\(user.requireID())")
-            } catch {
+        User.find(request.session.authenticated(User.self), on: request.db).flatMapThrowing { user in
+            guard let user = user else {
                 return request.redirect(to: "login")
             }
-        }
 
-        return request.eventLoop.makeSucceededFuture(redirect)
+            return try request.redirect(to: "/user/\(user.requireID())")
+        }
     }
 
     /// Render signup
