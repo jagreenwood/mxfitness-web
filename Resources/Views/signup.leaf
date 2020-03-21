@@ -4,18 +4,18 @@ Signup Template
 POST Context:
 
 - name
-- username
+- email
 - password
 -->
 <link rel="stylesheet" type="text/css" href="/styles/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="card">
-    <form action="/register" method="POST">
+    <form action="/signup" method="POST">
         <div class="row">
             <input type="name" name="name" id="name" placeholder="Name" />
         </div>
         <div class="row">
-            <input type="username" name="username" id="email" placeholder="Email" />
+            <input type="email" name="email" id="email" placeholder="Email" />
         </div>
         <div class="row">
             <input type="password" name="password" id="password" placeholder="Password" />

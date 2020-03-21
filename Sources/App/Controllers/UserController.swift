@@ -42,17 +42,18 @@ extension UserController {
     static func sessionSignup(_ request: Request) throws -> EventLoopFuture<Response> {
         try createUser(request).flatMap { user in
             // query for active challenge and set it on user
-            return ChallengeController.activeChallenge(request: request).flatMap { challenge in
-                if challenge == nil {
-                    request.logger.notice("No active challenge to link to user")
-                }
+            return ChallengeController.activeChallenge(request: request)
+                .flatMap { challenge in
+                    if challenge == nil {
+                        request.logger.notice("No active challenge to link to user")
+                    }
 
-                // optional challenge, want to break signup and throw an error
-                user.$challenge.id = challenge?.id
+                    // optional challenge, want to break signup and throw an error
+                    user.$challenge.id = challenge?.id
 
-                request.session.authenticate(user)
-                return user.save(on: request.db)
-            }.map { request.redirect(to: "/") }
+                    request.session.authenticate(user)
+                    return user.save(on: request.db) }
+                .flatMapThrowing { try request.redirect(to: "/user/\(user.requireID())") }
         }
     }
 
@@ -61,19 +62,17 @@ extension UserController {
     }
 
     static func sessionLogin(_ request: Request) throws -> EventLoopFuture<Response> {
-        /* Get user, authenticate user on request, redirect to user home view */
-        do {
-            let user = try request.auth.require(User.self)
-            request.session.authenticate(user)
-            return request.eventLoop.makeSucceededFuture(request.redirect(to: "/"))
-        } catch {
-            return request.eventLoop.makeFailedFuture(Abort(.notFound, reason: "Bad credentials"))
+        let login = try request.content.decode(UserLogin.self)
+        return User.authenticator().authenticate(basic: BasicAuthorization(username: login.email, password: login.password), for: request)
+            .unwrap(or: Abort(.notFound, reason: "Bad credentials"))
+            .flatMapThrowing { user in
+                request.auth.login(user)
+                return try request.redirect(to: "/user/\(user.requireID())")
         }
     }
 
     static func userForIDView(_ request: Request) throws -> EventLoopFuture<View> {
         let authUser = try request.auth.require(User.self)
-
         let promise = request.eventLoop.makePromise(of: AuthenticatedResponse<UserResponse>.self)
 
         DispatchQueue.global().async {

@@ -6,3 +6,43 @@ Context:
 - user -> Auth'd User Object
 - response -> User Object
 -->
+<link rel="stylesheet" type="text/css" href="/styles/user.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="nav">
+    <div class="nav-cell">
+        <a class="nav-item" href="#" class="/leaderboard">Leaderboard</a>
+    </div>
+</div>
+
+<div class="background">
+    <div class="top">
+        <div class="top-content">
+            <div class="top-content-left">
+                <img src="/images/company-logo.png">
+            </div>
+            <div class="top-content-right">
+                <p class="user-info">username</p>
+                <p class="user-info"><span>19</span> workouts</p>
+                <p class="user-info">5h 30m</p>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<div class="bottom">
+    <div class="bottom-content-left">
+        <h1 class="stats">Workouts</h1>
+        <div class="stats-container">
+            <p class="stats bold">Running</p>
+            <p class="stats">1hr 15min</p>
+        </div>
+        <div class="stats-container">
+            <p class="stats bold">Yoga</p>
+            <p class="stats">30min</p>
+        </div>
+        <br>
+    </div>
+    <div class="bottom-content-right">
+        <button><span>Add Workout<span></button>
+    </div>
+</div> 
