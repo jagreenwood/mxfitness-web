@@ -4,7 +4,7 @@ Login Template
 
 POST Context:
 
-- username
+- email
 - password
 -->
 <link rel="stylesheet" type="text/css" href="styles/login.css">

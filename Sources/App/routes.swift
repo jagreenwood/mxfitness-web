@@ -21,20 +21,17 @@ func sessionRoutes(_ app: Application) throws {
         return request.eventLoop.makeSucceededFuture(redirect)
     }
 
-    /// Session middleware for web requests
-    let passwordProtected = app.grouped(User.authenticator().middleware())
-
     /// Render signup
     app.get("signup", use: UserController.signupView)
     /// Render login
     app.get("login", use: UserController.loginView)
     /// Session user create
     app.post("signup", use: UserController.sessionSignup)
-    /// Session login
-    passwordProtected.post("login", use: UserController.sessionLogin)
 
     /// Session middleware for web requests
     let sessionProtected = app.grouped(app.fluent.sessions.middleware(for: User.self))
+    /// Session login
+    sessionProtected.post("login", use: UserController.sessionLogin)
     /// Render challenges view
     sessionProtected.get("challenges", use: ChallengeController.challengesView)
     /// Render challenge view
@@ -72,4 +69,6 @@ func apiRoutes(_ app: Application) throws {
     let tokenProtected = apiV1.grouped(UserToken.authenticator().middleware())
     /// POST Workout
     tokenProtected.post("workout", use: WorkoutController.create)
+    /// GET Leaderboard
+    tokenProtected.get("leaderboard", use: ChallengeController.leaderboard)
 }
