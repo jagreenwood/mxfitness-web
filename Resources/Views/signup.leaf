@@ -4,6 +4,6 @@ Signup Template
 POST Context:
 
 - name
-- username
+- email
 - password
 -->

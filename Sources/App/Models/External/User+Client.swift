@@ -30,11 +30,11 @@ public struct UserResponse: Codable, Equatable {
 }
 
 public struct UserLogin: Codable {
-    public let username: String
+    public let email: String
     public let password: String
 
-    public init(username: String, password: String) {
-        self.username = username
+    public init(email: String, password: String) {
+        self.email = email
         self.password = password
     }
 }

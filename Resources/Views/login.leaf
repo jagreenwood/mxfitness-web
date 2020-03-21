@@ -3,6 +3,6 @@ Login Template
 
 POST Context:
 
-- username
+- email
 - password
 -->
