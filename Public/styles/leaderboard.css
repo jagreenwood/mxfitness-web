@@ -35,8 +35,9 @@ html, body {
 }
 
 img {
-    height: 120px;
+    height: 60px;
     border-radius: 100%;
+    margin: auto;
 }
 
 .background {
@@ -57,12 +58,16 @@ img {
     padding: 40px;
 }
 
-.top-content-right {
-    margin-left: 40px;
+.title {
+    font-size: 60px;
 }
 
 .user-info {
     padding: 5px;
+}
+
+.top-content-right {
+    margin-left: 40px;
 }
 
 .top-content-left {
@@ -86,6 +91,15 @@ img {
     text-align: center;
 }
 
+
+.stat-title {
+    text-decoration: underline;
+}
+
+.stat {
+    margin: 10px;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -97,11 +111,6 @@ li {
     padding: 8px;
 }
 
-.stat {
-    margin: 10px;
-}
-
-
 p, h1 {
     margin: 0;
 }
@@ -111,13 +120,6 @@ h1 {
 }
 
 
-.bold {
-    font-weight: bold;
-    font-weight: 18px;
-}
-
-
-
 @media only screen and (max-width: 600px) {
     .top, .bottom {
         width: 100%
@@ -125,6 +127,7 @@ h1 {
     
     .bottom {
         flex-direction: column;
+        margin-top: 20px;
     }
 
     .top {
@@ -146,11 +149,10 @@ h1 {
 
     .nav-cell {
         width: max-content;
-        display: block;
+        display: flex;
+        flex-direction: column;
         margin: auto;
         margin-bottom: 20px;
-        text-decoration: underline;
-        padding: 0;
     }
 
     .nav-item {

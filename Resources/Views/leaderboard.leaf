@@ -16,38 +16,36 @@ LeaderboardUser
 -->
 <link rel="stylesheet" type="text/css" href="/styles/leaderboard.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <div class="background">
     <div class="top">
         <div class="top-content">
-            <h1>Spring 2020</h1>
+            <h1 class="title">Spring 2020</h1>
         </div>
         <div class="nav-cell">
             <img src="user.img">
-            <a class="nav-item" href="/leaderboard">username</a>
+            <span class="nav-item">#(name)</span>
         </div>
     </div>
 </div>
-
 <div class="bottom">
     <div class="bottom-content-left">
-       <h1>Total Workouts</h1>
+       <h1 class="stat-title">Total Workouts</h1>
        <ul>
-            <li>
-                <p class="stat">1.</p>
-                <p class="stat">username</p>
-                <p class="stat">23</p>
-            </li>
+                <li>
+                    <p class="stat">1.</p>
+                    <p class="stat">username</p>
+                    <p class="stat">23</p>
+                </li>
        </ul>
     </div>
     <div class="bottom-content-right">
-       <h1>Total Duration</h1>
+       <h1 class="stat-title">Total Duration</h1>
         <ul>
-             <li>
-                <p class="stat">1.</p>
-                <p class="stat">username</p>
-                <p class="stat">23m</p>
-            </li>
+                <li>
+                    <p class="stat">1.</p>
+                    <p class="stat">username</p>
+                    <p class="stat">23</p>
+                </li>
        </ul>
     </div>
 </div> 
