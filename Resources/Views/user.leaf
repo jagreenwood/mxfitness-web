@@ -8,11 +8,7 @@ Context:
 -->
 <link rel="stylesheet" type="text/css" href="/styles/user.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="nav">
-    <div class="nav-cell">
-        <a class="nav-item" href="#" class="/leaderboard">Leaderboard</a>
-    </div>
-</div>
+
 
 <div class="background">
     <div class="top">
@@ -25,6 +21,9 @@ Context:
                 <p class="user-info"><span>19</span> workouts</p>
                 <p class="user-info">5h 30m</p>
             </div> 
+        </div>
+        <div class="nav-cell">
+           <a class="nav-item" href="/leaderboard">Leaderboard</a>
         </div>
     </div>
 </div>
