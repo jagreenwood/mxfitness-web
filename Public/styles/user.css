@@ -12,7 +12,6 @@ html, body {
 
 .nav {
     overflow: hidden;
-    /* position: fixed; */
     top: 0;
     width: 100%;
     background-color: #000;
@@ -88,6 +87,7 @@ img {
 
 .stats {
     text-align: center;
+    width: 50%;
 }
 
 p, h1 {
@@ -123,6 +123,10 @@ button {
     .top-content-left {
         margin-right: 32px;
         margin-left: -32px;
+    }
+
+    .stats {
+        width: 100%;
     }
 
     .bottom {
