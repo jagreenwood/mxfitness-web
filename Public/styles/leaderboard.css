@@ -35,19 +35,15 @@ html, body {
 }
 
 img {
+    height: 60px;
     border-radius: 100%;
-    display: block;
-    max-width: 230px;
-    max-height: 95px;
-    width: auto;
-    height: auto;
+    margin: auto;
 }
 
 .background {
     background-color: #ebebeb;
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .top {
@@ -63,12 +59,16 @@ img {
     padding: 40px;
 }
 
-.top-content-right {
-    margin-left: 40px;
+.title {
+    font-size: 60px;
 }
 
 .user-info {
     padding: 5px;
+}
+
+.top-content-right {
+    margin-left: 40px;
 }
 
 .top-content-left {
@@ -89,15 +89,27 @@ img {
 
 .bottom-content-left, .bottom-content-right {
     width: 50%;
-}
-
-.stats-container {
-    padding: 25px;
-}
-
-.stats {
     text-align: center;
-    width: 50%;
+}
+
+
+.stat-title {
+    text-decoration: underline;
+}
+
+.stat {
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
 }
 
 p, h1 {
@@ -108,18 +120,15 @@ h1 {
     font-size: 24px;
 }
 
-.bold {
-    font-weight: bold;
-    font-weight: 18px;
-}
-
-button {
-    float: right;
-}
 
 @media only screen and (max-width: 600px) {
     .top, .bottom {
         width: 100%
+    }
+    
+    .bottom {
+        flex-direction: column;
+        margin-top: 20px;
     }
 
     .top {
@@ -141,35 +150,14 @@ button {
 
     .nav-cell {
         width: max-content;
-        display: block;
+        display: flex;
+        flex-direction: column;
         margin: auto;
         margin-bottom: 20px;
-        text-decoration: underline;
-        padding: 0;
     }
 
     .nav-item {
         position: initial;
         float: none;
     }
-
-    .stats {
-        width: 100%;
-    }
-
-    .bottom {
-        flex-direction: column-reverse;
-        margin-top: 10px;
-    }
-    
-    button {
-        display: flex;
-        margin: 15 auto;
-        border: 1px solid grey;
-        padding: 13px;
-        background-color: #f3f3f3;
-        border: 1px solid #bfbfbf;
-        float: none;
-    }
-   
 }
