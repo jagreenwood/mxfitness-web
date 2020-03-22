@@ -22,8 +22,8 @@ LeaderboardUser
             <h1 class="title">Spring 2020</h1>
         </div>
         <div class="nav-cell">
-            <img src="user.img">
-            <span class="nav-item">#(name)</span>
+            <img src="#(user.id)""">
+            <span class="nav-item"><a href="/user/#(user.avatar)">#(user.name)</a></span>
         </div>
     </div>
 </div>
@@ -31,6 +31,7 @@ LeaderboardUser
     <div class="bottom-content-left">
        <h1 class="stat-title">Total Workouts</h1>
        <ul>
+       
                 <li>
                     <p class="stat">1.</p>
                     <p class="stat">username</p>

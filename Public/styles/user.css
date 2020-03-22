@@ -35,13 +35,19 @@ html, body {
 }
 
 img {
-    height: 120px;
     border-radius: 100%;
+    display: block;
+    max-width: 230px;
+    max-height: 95px;
+    width: auto;
+    height: auto;
 }
 
 .background {
     background-color: #ebebeb;
     width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .top {
