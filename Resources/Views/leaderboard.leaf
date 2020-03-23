@@ -3,6 +3,11 @@ Leaderboard Template
 
 Context:
 
+- user -> Auth'd User Object
+- response -> Leaderboard Object
+
+Leaderboard
+
 - name - Name of the Challenge
 - total_count_users - Array of LeaderboardUsers
 - total_duration_users - Array of LeaderboardUsers

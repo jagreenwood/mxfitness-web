@@ -65,8 +65,11 @@ extension ChallengeController {
     }
 
     static func leaderboardView(_ request: Request) throws -> EventLoopFuture<View> {
-        leaderboard(for: request.parameters.get("id")!, request: request)
-            .flatMap { request.view.render("leaderboard", $0)}
+        try request.auth.require(User.self).response(request)
+            .flatMap { userResponse in
+                leaderboard(for: request.parameters.get("id")!, request: request)
+                    .flatMap { request.view.render("leaderboard", AuthenticatedResponse(user: userResponse, response: $0))}
+        }
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
