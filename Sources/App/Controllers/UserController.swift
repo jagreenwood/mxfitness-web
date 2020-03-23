@@ -53,7 +53,7 @@ extension UserController {
 
                     request.session.authenticate(user)
                     return user.save(on: request.db) }
-                .map { request.redirect(to: "/") }
+                .flatMapThrowing { try request.redirect(to: "/user/\(user.requireID())") }
         }
     }
 
@@ -62,13 +62,12 @@ extension UserController {
     }
 
     static func sessionLogin(_ request: Request) throws -> EventLoopFuture<Response> {
-        /* Get user, authenticate user on request, redirect to user home view */
-        do {
-            let user = try request.auth.require(User.self)
-            request.session.authenticate(user)
-            return request.eventLoop.makeSucceededFuture(request.redirect(to: "/"))
-        } catch {
-            return request.eventLoop.makeFailedFuture(Abort(.notFound, reason: "Bad credentials"))
+        let login = try request.content.decode(UserLogin.self)
+        return User.authenticator().authenticate(basic: BasicAuthorization(username: login.email, password: login.password), for: request)
+            .unwrap(or: Abort(.notFound, reason: "Bad credentials"))
+            .flatMapThrowing { user in
+                request.auth.login(user)
+                return try request.redirect(to: "/user/\(user.requireID())")
         }
     }
 

@@ -1,0 +1,175 @@
+@import url(//db.onlinewebfonts.com/c/3b7ae3b725a8d7bcc2e2d9459d5d30f7?family=Depot+New);
+
+* {
+    font-family: "Depot New", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.nav {
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    background-color: #000;
+    height: 40px
+}
+
+.nav-cell {
+    width: 50%;
+    margin: auto;
+}
+
+.nav-item {
+    color: #000;
+    margin: auto;
+    padding: 10px;
+    float: right;
+    text-decoration: none;
+    position: absolute;
+    top: 5;
+    right: 140px;
+}
+
+img {
+    border-radius: 100%;
+    display: block;
+    max-width: 230px;
+    max-height: 95px;
+    width: auto;
+    height: auto;
+}
+
+.background {
+    background-color: #ebebeb;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.top {
+    width: 100%;
+    display: flex;
+}
+
+.top-content, .bottom-content {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+    padding: 40px;
+}
+
+.top-content-right {
+    margin-left: 40px;
+}
+
+.user-info {
+    padding: 5px;
+}
+
+.top-content-left {
+    margin-left: 96px;
+}
+
+.bottom {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    margin-top: 96px;
+}
+
+.bottom-content {
+    flex-direction: column;
+    text-align: center;
+}
+
+.bottom-content-left, .bottom-content-right {
+    width: 50%;
+}
+
+.stats-container {
+    padding: 25px;
+}
+
+.stats {
+    text-align: center;
+    width: 50%;
+}
+
+p, h1 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.bold {
+    font-weight: bold;
+    font-weight: 18px;
+}
+
+button {
+    float: right;
+}
+
+@media only screen and (max-width: 600px) {
+    .top, .bottom {
+        width: 100%
+    }
+
+    .top {
+        flex-direction: column;
+    }
+    
+    .top-content, .bottom-content {
+        width: max-content;
+    }
+
+    .top-content-right, .top-content-left, .bottom-content-left, .bottom-content-right {
+        margin: auto;
+    }
+
+    .top-content-left {
+        margin-right: 32px;
+        margin-left: -32px;
+    }
+
+    .nav-cell {
+        width: max-content;
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+        text-decoration: underline;
+        padding: 0;
+    }
+
+    .nav-item {
+        position: initial;
+        float: none;
+    }
+
+    .stats {
+        width: 100%;
+    }
+
+    .bottom {
+        flex-direction: column-reverse;
+        margin-top: 10px;
+    }
+    
+    button {
+        display: flex;
+        margin: 15 auto;
+        border: 1px solid grey;
+        padding: 13px;
+        background-color: #f3f3f3;
+        border: 1px solid #bfbfbf;
+        float: none;
+    }
+   
+}
