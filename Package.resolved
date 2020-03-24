@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-postgres-driver.git",
         "state": {
           "branch": null,
-          "revision": "36ab616bf73dceed67dd97d5fa5ac8b4b55dd62c",
-          "version": "2.0.0-rc.1"
+          "revision": "a7b7e341fe998ac1a20eac21962af934146a5de1",
+          "version": "2.0.0-rc.1.1"
         }
       },
       {
@@ -78,7 +78,7 @@
         "repositoryURL": "https://github.com/jagreenwood/mxfitness-model.git",
         "state": {
           "branch": "master",
-          "revision": "ab0f90fb11190330f444430231d85b8583c3ceed",
+          "revision": "f8e899fc788a0a1f11b5443c184d687c66b00fcf",
           "version": null
         }
       },
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "c113c4b4e9a1dae3878e38af39c9d45ea88dec73",
-          "version": "4.0.0-rc.3.7"
+          "revision": "8e95515373576fd95a059e5b68a1b98494ca2fce",
+          "version": "4.0.0-rc.3.10"
         }
       },
       {
