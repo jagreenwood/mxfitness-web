@@ -12,12 +12,12 @@ Context:
     <div class="top">
         <div class="top-content">
             <div class="top-content-left">
-                <img src="/images/company-logo.png">
+                <img src="#(user.avatar)" alt="user.avatar">
             </div>
             <div class="top-content-right">
-                <p class="user-info">#(user.name)</p>
-                <p class="user-info"><span>#(user.totalWorkoutCount)</span> workouts</p>
-                <p class="user-info">#(user.totalWorkoutDuration)</p>
+                <h1 class="user-info">#(user.name)</h1>
+                <p class="user-info"><span>#(user.total-workout-count)</span> workouts</p>
+                <p class="user-info">#(user.total-workout-duration)</p>
             </div> 
         </div>
         <div class="nav-cell">
@@ -28,17 +28,24 @@ Context:
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
-        <div class="stats-container">
-            <p class="stats bold">Running</p>
-            <p class="stats">1hr 15min</p>
-        </div>
-        <div class="stats-container">
-            <p class="stats bold">Yoga</p>
-            <p class="stats">30min</p>
-        </div>
+      
         <br>
     </div>
     <div class="bottom-content-right">
         <button type="button" data-toggle="modal" data-target="#addWorkout">Add Workout</button>
     </div>
 </div> 
+
+
+<div class="modal" id="addWorkout">
+    <div class="modal-dialog">
+        <form action="/user/#(response.user.id)/folder" method="POST">
+            <div class="form-group">
+                <h1>New Workout</h1>
+                <input type="name" name="name" class="form-control groups-form-control" id="name" placeholder="workout name"/>
+                <input type="submit" class="btn" value="Submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
