@@ -66,11 +66,9 @@ extension ChallengeController {
     }
 
     static func leaderboardView(_ request: Request) throws -> EventLoopFuture<View> {
-        try request.auth.require(User.self).response(request)
-            .flatMap { userResponse in
-                leaderboard(for: request.parameters.get("id")!, request: request)
-                    .flatMap { request.view.render("leaderboard", AuthenticatedResponse(user: userResponse, response: $0))}
-        }
+        let userResponse = try request.auth.require(User.self).baseResponse()
+        return leaderboard(for: request.parameters.get("id")!, request: request)
+            .flatMap { request.view.render("leaderboard", AuthenticatedResponse(user: userResponse, response: $0)) }
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
@@ -104,7 +102,13 @@ private extension ChallengeController {
         .flatMap { $0 }
         .flatMapThrowing { challenge -> Leaderboard in
             let groupedWorkouts = Dictionary(grouping: challenge.workouts, by: \.user)
-            let leaderboardUsers = try groupedWorkouts.map { try LeaderboardUser(id: $0.requireID().uuidString, name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
+            let leaderboardUsers: [LeaderboardUser] = try groupedWorkouts.map {
+                guard let avatar = $0.userAvatar else {
+                    throw Abort(.internalServerError, reason: "Couldn't build avatar.")
+                }
+
+                return try LeaderboardUser(id: $0.requireID().uuidString, name: $0.name, avatar: avatar, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration)
+            }
 
             let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
             let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }
