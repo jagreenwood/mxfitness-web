@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import Model
 
 extension Array where Element == Challenge {
     func responses(_ request: Request) throws -> EventLoopFuture<[ChallengeResponse]> {
@@ -36,14 +37,18 @@ extension User {
             throw Abort(.internalServerError)
         }
 
-        return $workouts.load(on: request.db).flatMapThrowing {
-            try UserResponse(id: self.requireID().uuidString,
-                             name: self.name,
-                             email: self.email,
-                             avatar: avatar,
-                             role: self.role.rawValue,
-                             totalWorkoutCount: self.workouts.count,
-                             totalWorkoutDuration: self.workouts.totalDuration)
+        return $workouts.load(on: request.db)
+            .flatMapThrowing { try self.workouts.responses(request) }
+            .flatMap { $0 }
+            .flatMapThrowing { workoutResponses in
+                try UserResponse(id: self.requireID().uuidString,
+                                 name: self.name,
+                                 email: self.email,
+                                 avatar: avatar,
+                                 role: self.role.rawValue,
+                                 workouts: workoutResponses,
+                                 totalWorkoutCount: self.workouts.count,
+                                 totalWorkoutDuration: self.workouts.totalDuration)
         }
     }
 }
