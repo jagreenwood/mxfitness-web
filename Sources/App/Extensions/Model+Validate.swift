@@ -6,6 +6,7 @@
 //
 
 import Vapor
+import Model
 
 extension UserCreate: Validatable {
     public static func validations(_ validations: inout Validations) {

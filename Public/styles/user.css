@@ -36,6 +36,7 @@ html, body {
 
 img {
     border-radius: 100%;
+    border: 2px solid #000;
     display: block;
     max-width: 230px;
     max-height: 95px;
@@ -106,6 +107,7 @@ p, h1 {
 
 h1 {
     font-size: 24px;
+    padding: 10px;
 }
 
 .bold {
@@ -116,6 +118,34 @@ h1 {
 button {
     float: right;
 }
+
+/* modal */
+
+.modal {
+    display: none;
+}
+
+.modal-dialog {
+    background-color: #f7f7f7;
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+    height: 200px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+input {
+    margin: 10px;
+    padding: 2px;
+}
+   
 
 @media only screen and (max-width: 600px) {
     .top, .bottom {
