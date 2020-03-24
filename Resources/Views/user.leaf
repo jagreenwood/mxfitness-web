@@ -28,6 +28,16 @@ Context:
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
+
+        <!--
+         #for(challenge in workouts) { 
+            <div class="stats-container">
+                <p class="stats bold">#(user.workout-name)</p>
+                <p class="stats">#(user.total-workout-duration)</p>
+            </div>
+        }
+         -->
+
       
         <br>
     </div>
