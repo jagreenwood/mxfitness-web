@@ -8,6 +8,7 @@
 import Fluent
 import Vapor
 import Leaf
+import Model
 
 struct ChallengeController {
     static func challenge(for id: UUID, request: Request) -> EventLoopFuture<Challenge> {
@@ -103,7 +104,7 @@ private extension ChallengeController {
         .flatMap { $0 }
         .flatMapThrowing { challenge -> Leaderboard in
             let groupedWorkouts = Dictionary(grouping: challenge.workouts, by: \.user)
-            let leaderboardUsers = try groupedWorkouts.map { try LeaderboardUser(id: $0.requireID(), name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
+            let leaderboardUsers = try groupedWorkouts.map { try LeaderboardUser(id: $0.requireID().uuidString, name: $0.name, totalWorkoutCount: $1.count, totalWorkoutDuration: $1.totalDuration) }
 
             let countSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutCount > $1.totalWorkoutCount }
             let durationSortedUsers = leaderboardUsers.sorted { $0.totalWorkoutDuration > $1.totalWorkoutDuration }

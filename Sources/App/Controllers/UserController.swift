@@ -8,6 +8,7 @@
 import Fluent
 import Vapor
 import Leaf
+import Model
 
 struct UserController {
     static func user(for id: UUID, request: Request) -> EventLoopFuture<User> {

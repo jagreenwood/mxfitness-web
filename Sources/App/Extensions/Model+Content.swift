@@ -6,6 +6,7 @@
 //
 
 import Vapor
+import Model
 
 extension UserResponse: Content { }
 extension WorkoutResponse: Content { }
