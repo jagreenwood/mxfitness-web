@@ -30,12 +30,10 @@ struct ChallengeController {
     }
 }
 
+/// API Calls
 extension ChallengeController {
-    static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
-        activeChallenge(request: request)
-            .unwrap(or: Abort(.notFound, reason: "Challenge Not Found."))
-            .flatMapThrowing { try leaderboard(for: $0.requireID(), request: request) }
-            .flatMap { $0 }
+    static func userChallenge(request: Request) -> EventLoopFuture<ChallengeResponse> {
+        throw Abort(.notImplemented)
     }
 }
 
@@ -94,6 +92,13 @@ extension ChallengeController {
 }
 
 private extension ChallengeController {
+    static func leaderboard(_ request: Request) -> EventLoopFuture<Leaderboard> {
+        activeChallenge(request: request)
+            .unwrap(or: Abort(.notFound, reason: "Challenge Not Found."))
+            .flatMapThrowing { try leaderboard(for: $0.requireID(), request: request) }
+            .flatMap { $0 }
+    }
+
     static func leaderboard(for challengeID: UUID, request: Request) -> EventLoopFuture<Leaderboard> {
         ChallengeController.challenge(for: challengeID, request: request).map { challenge in
             challenge.workouts.map { $0.$user.load(on: request.db) }.flatten(on: request.eventLoop)
