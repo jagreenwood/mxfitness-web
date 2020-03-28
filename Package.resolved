@@ -74,11 +74,11 @@
         }
       },
       {
-        "package": "Model",
+        "package": "mxfitness-model",
         "repositoryURL": "https://github.com/jagreenwood/mxfitness-model.git",
         "state": {
           "branch": "master",
-          "revision": "f8e899fc788a0a1f11b5443c184d687c66b00fcf",
+          "revision": "fa8f5aa1bc5620200b19568206557de1212887fa",
           "version": null
         }
       },

@@ -1,39 +1,3 @@
-@import url(//db.onlinewebfonts.com/c/3b7ae3b725a8d7bcc2e2d9459d5d30f7?family=Depot+New);
-
-* {
-    font-family: "Depot New", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-.nav {
-    overflow: hidden;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    height: 40px
-}
-
-.nav-cell {
-    width: 50%;
-    margin: auto;
-}
-
-.nav-item {
-    color: #000;
-    margin: auto;
-    padding: 10px;
-    float: right;
-    text-decoration: none;
-    position: absolute;
-    top: 5;
-    right: 140px;
-}
-
 img {
     border-radius: 100%;
     border: 2px solid #000;
@@ -51,21 +15,17 @@ img {
 
 }
 
-.top {
-    width: 100%;
-    display: flex;
-}
-
 .top-content, .bottom-content {
-    display: flex;
-    justify-content: center;
     width: 50%;
-    margin: auto;
     padding: 40px;
 }
 
 .top-content-right {
     margin-left: 40px;
+}
+
+.leaderboard {
+    margin-top: 16px;
 }
 
 .user-info {
@@ -83,22 +43,22 @@ img {
     margin-top: 96px;
 }
 
-.bottom-content {
-    flex-direction: column;
-    text-align: center;
-}
-
 .bottom-content-left, .bottom-content-right {
     width: 50%;
 }
 
 .stats-container {
-    padding: 25px;
+    padding: 8px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .stats {
-    text-align: center;
     width: 50%;
+    margin: 10px 0px 0px 10px;
 }
 
 p, h1 {
@@ -106,7 +66,6 @@ p, h1 {
 }
 
 h1 {
-    font-size: 24px;
     padding: 10px;
 }
 
@@ -117,12 +76,18 @@ h1 {
 
 button {
     float: right;
+    height: 40px;
+    width: 140px;
 }
 
 /* modal */
 
 .modal {
     display: none;
+}
+
+form {
+    margin: 0;
 }
 
 .modal-dialog {
@@ -144,7 +109,89 @@ button {
 input {
     margin: 10px;
     padding: 2px;
+    height: 40px;
 }
+
+
+/* modal */
+
+#infoModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.modal {
+    margin: 5% auto;
+    width: 476px;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-close {
+    width: 100%;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.modal-top {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.modal-span {
+    float: right;
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+.modal-span:hover,
+.modal-span:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+     
+.modal-h1 {
+    font-family: Urbano;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 14px;
+    font-stretch: expanded;
+
+} 
+
+
+
+.modal-btn {
+    width: 50%;
+    border: 1px solid #bfbfbf;
+    background-color: #fff;
+    margin: 10px auto;    
+    height: 40px;
+}
+
    
 
 @media only screen and (max-width: 600px) {
@@ -155,18 +202,22 @@ input {
     .top {
         flex-direction: column;
     }
-    
-    .top-content, .bottom-content {
-        width: max-content;
+
+    .top-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        width: auto;
     }
 
     .top-content-right, .top-content-left, .bottom-content-left, .bottom-content-right {
         margin: auto;
+        width: 100%;
+        text-align: center;
     }
 
-    .top-content-left {
-        margin-right: 32px;
-        margin-left: -32px;
+    img {
+        margin: 0 auto;
     }
 
     .nav-cell {
@@ -203,3 +254,4 @@ input {
     }
    
 }
+
