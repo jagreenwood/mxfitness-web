@@ -6,8 +6,8 @@ Context:
 - user -> Auth'd User Object
 - response -> User Object
 -->
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="user.css">
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/styles/user.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="background">
     <div class="top">

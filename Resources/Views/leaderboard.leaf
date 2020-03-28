@@ -19,9 +19,9 @@ LeaderboardUser
 - total-workout-count
 - total-workout-duration
 -->
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="user.css">
-<link rel="stylesheet" type="text/css" href="leaderboard.css">
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/styles/user.css">
+<link rel="stylesheet" type="text/css" href="/styles/leaderboard.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="background">
     <div class="top">
