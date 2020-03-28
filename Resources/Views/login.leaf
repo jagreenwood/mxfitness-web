@@ -6,3 +6,26 @@ POST Context:
 - email
 - password
 -->
+<link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="card">
+    <img src="/images/company-logo.png">
+    <form action="/login" method="POST">
+        <div class="row">
+            <input type="email" name="email" id="email" placeholder="Email" />
+        </div>
+        <div class="row">
+            <input type="password" name="password" id="password" placeholder="Password" />
+        </div>
+        <div class="row">
+            <input type="submit" class="btn" value="Login" />
+        </div>
+         <div class="row">
+             <a href="/signup">Create Account</a>
+        </div>
+    </form>
+</div>
+
+
