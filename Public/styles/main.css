@@ -59,3 +59,12 @@ h1 {
     flex-direction: column;
     text-align: center;
 }
+
+.number {
+    color: #fff;
+    font-family: 'Titan One', cursive;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 4px;
+}

@@ -48,7 +48,8 @@ img {
 }
 
 .stats-container {
-    padding: 8px;
+    display: flex;
+    padding: 20px;
     margin: 10px 0px 10px 0px;
     border: 1px solid #888;
     border-radius: 10px;
@@ -58,8 +59,18 @@ img {
 
 .stats {
     width: 50%;
-    margin: 10px 0px 0px 10px;
+    /* margin: 10px 0px 0px 10px; */
 }
+
+.circle {
+    height: 33px;
+    background-color: #9a9a9a;
+    width: 41px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+
 
 p, h1 {
     margin: 0;
@@ -235,7 +246,11 @@ input {
     }
 
     .stats {
-        width: 100%;
+        margin: auto;
+    }
+
+    .number {
+        margin-top: 5px;
     }
 
     .bottom {
@@ -251,6 +266,12 @@ input {
         background-color: #f3f3f3;
         border: 1px solid #bfbfbf;
         float: none;
+        justify-content: center;
+        height: 48px;
+    }
+
+    .modal {
+        width: 85%;
     }
    
 }
