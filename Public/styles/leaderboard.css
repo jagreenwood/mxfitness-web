@@ -54,21 +54,37 @@ img {
     margin: auto;
     display: flex;
     margin-top: 96px;
+    justify-content: space-around;
 }
 
 .stats {
     width: 50%;
-    /* margin: 10px 0px 0px 10px; */
+    font-weight: bold;
+    letter-spacing: 2.6px;
 }
 
 .circle {
     height: 33px;
-    background-color: #9a9a9a;
+    border: 1px solid #fff;
     width: 41px;
     border-radius: 100%;
     margin-right: 20px;
 }
 
+.total-workout:nth-of-type(1) .total-circle,
+.total-duration:nth-of-type(1) .duration-circle{
+    background-color: #C9B037;
+}
+
+.total-workout:nth-of-type(2) .total-circle,
+.total-duration:nth-of-type(2) .duration-circle{
+    background-color: #D7D7D7;
+}
+
+.total-workout:nth-of-type(3) .total-circle,
+.total-duration:nth-of-type(3) .duration-circle{
+    background-color: #AD8A56;
+}
 
 
 
@@ -82,7 +98,6 @@ h1 {
 
 .bold {
     font-weight: bold;
-    font-weight: 18px;
 }
 
 button {
@@ -122,9 +137,6 @@ input {
     padding: 2px;
     height: 40px;
 }
-
-
-/* modal */
 
 #infoModal {
     display: none;
@@ -213,6 +225,7 @@ input {
 
     .top-content {
         padding: 0;
+        width: 100%;
     }
 
     .top-content-right, .top-content-left, .bottom-content-left {
@@ -247,6 +260,7 @@ input {
     .duration-number {
         margin-top: 5px;
     }
+
 
     .bottom {
         flex-direction: column;

@@ -43,8 +43,7 @@ img {
 
 .stats {
     width: 50%;
-    color: #32364a;
-    /* margin: 10px 0px 0px 10px; */
+    letter-spacing: 2.6px;
 }
 
 .time {
@@ -53,7 +52,7 @@ img {
 
 .circle {
     height: 33px;
-    background-color: #9a9a9a;
+    border: 1px solid #fff;
     width: 41px;
     border-radius: 100%;
     margin-right: 20px;
@@ -76,8 +75,8 @@ h1 {
 
 button {
     float: right;
-    height: 40px;
-    width: 140px;
+    height: 60px;
+    width: 170px;
 }
 
 /* modal */
@@ -252,7 +251,8 @@ input {
         padding: 13px;
         float: none;
         justify-content: center;
-        height: 48px;
+        height: 59px;
+        width: 195px;
     }
 
     .modal {

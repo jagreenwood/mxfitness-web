@@ -47,11 +47,9 @@ Context:
     </div>
 </div> 
 
-
-
 <div id="infoModal">
     <div class="modal">
-        <form action="/user/#(response.user.id)/folder" method="POST"></form>
+        <form action="/user/#(response.user.workout)" method="POST"></form>
             <div class="modal-close">
             <span  class="modal-span" onclick=closeModal() >&times;</span>
             </div>
@@ -65,17 +63,18 @@ Context:
     </div>
 </div>
 <script>
-    function openModal() {
-        document.getElementById('infoModal').style.display="block";
+/* modal funcs */
+function openModal() {
+    document.getElementById('infoModal').style.display="block";
+}
+function closeModal() {
+    document.getElementById('infoModal').style.display="none";
+}
+/* number workouts  */
+var stat = document.querySelectorAll('.number');
+if (stat) {
+    for (var i = 0; i < stat.length ; i++) {
+        stat[i].innerHTML= [i + 1];    
     }
-    function closeModal() {
-        document.getElementById('infoModal').style.display="none";
-    }
-    /* number workouts  */
-    var stat = document.querySelectorAll('.number');
-    if (stat) {
-        for (var i = 0; i < stat.length ; i++) {
-            stat[i].innerHTML= [i + 1];    
-        }
-    }
+}
 </script>
