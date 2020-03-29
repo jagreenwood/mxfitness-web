@@ -30,17 +30,16 @@ Context:
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
-        <!-- 
-        #for(workout in user.workouts) {
             <div class="stats-container">
                 <div class="stats circle">
                     <span class="stats number"></span>
                 </div>
+                <!--
                 <p class="stats bold">#(workout.name)</p>
-                <p class="stats">#(workout.workout-duration)</p>
+                <p class="stats time">#(workout.workout-duration)</p> -->
+                <p class="stats bold">Running</p>
+                <p class="stats time">01:12:43</p>
             </div>
-        }
-         -->
         <br>
     </div>
     <div class="bottom-content-right">
@@ -60,7 +59,7 @@ Context:
                 <h1 class="modal-h1">Enter a new Workout</h1>
                 <input type="name" name="name" class="form-control modal-input" id="name" placeholder="Workout Name"/>
                 <input type="date" name="start-date" class="form-control modal-input" id="name" placeholder="Start Date"/>
-                 <input type="submit" class="modal-btn" value="Submit" />
+                <input type="submit" class="modal-btn" value="Submit" />
             </div>
         </form>
     </div>
@@ -74,7 +73,9 @@ Context:
     }
     /* number workouts  */
     var stat = document.querySelectorAll('.number');
-    for (var i = 0; i < stat.length ; i++) {
-         stat[i].innerHTML= [i + 1];    
+    if (stat) {
+        for (var i = 0; i < stat.length ; i++) {
+            stat[i].innerHTML= [i + 1];    
+        }
     }
 </script>
