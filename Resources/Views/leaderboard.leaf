@@ -37,7 +37,7 @@ LeaderboardUser
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stat-title">Total Workouts</h1>
-       
+        #for(user.total-workout-count in user.workouts) {
             <div class="stats-container total-workout">
                 <div class="stats circle total-circle">
                     <span class="stats number total-number"></span>
@@ -45,68 +45,20 @@ LeaderboardUser
                 <p class="stats bold">#(user.name)</p>
                 <p class="stats">#(user.total-workout-count)</p>
             </div>
-
-             <div class="stats-container total-workout">
-                <div class="stats circle total-circle">
-                    <span class="stats number total-number"></span>
-                </div>
-                <p class="stats bold">Jedd Smith </p>
-                <p class="stats">12</p>
-            </div>
-
-             <div class="stats-container total-workout">
-                <div class="stats circle total-circle">
-                    <span class="stats number total-number"></span>
-                </div>
-                <p class="stats bold">steve mason </p>
-                <p class="stats">12</p>
-            </div>
-
-             <div class="stats-container total-workout">
-                <div class="stats circle total-circle">
-                    <span class="stats number total-number"></span>
-                </div>
-                <p class="stats bold">#(user.name)</p>
-                <p class="stats">42</p>
-            </div>
-         
+        }
         <br>
     </div>
     <div class="bottom-content-left">
         <h1 class="stat-title">Total Duration</h1>
-       
+        #for(user.total-workout-duration in user.workouts) {
             <div class="stats-container total-duration">
                 <div class="stats circle duration-circle">
                     <span class="stats number time"></span>
                 </div>
                 <p class="stats bold">#(user.name)</p>
                 <p class="stats">#(user.total-workout-duration)</p>
-            </div>
-
-             <div class="stats-container total-duration">
-                <div class="stats circle duration-circle">
-                    <span class="stats number time"></span>
-                </div>
-                <p class="stats bold">#(user.name)</p>
-                <p class="stats">12:02:12</p>
-            </div>
-
-             <div class="stats-container total-duration">
-                <div class="stats circle duration-circle">
-                    <span class="stats number time"></span>
-                </div>
-                <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.total-workout-duration)</p>
-            </div>
-
-             <div class="stats-container total-duration">
-                <div class="stats circle duration-circle">
-                    <span class="stats number time"></span>
-                </div>
-                <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.total-workout-duration)</p>
-            </div>
-        
+            </div> 
+        }
         <br>
     </div>
     </div>
