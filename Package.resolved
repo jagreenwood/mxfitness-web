@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/vapor/async-kit.git",
         "state": {
           "branch": null,
-          "revision": "094dad1142e4e272a328ab44edd39730f246fb3e",
-          "version": "1.0.0-rc.1"
+          "revision": "1f145cffe2109d0fc420bc03b31dacf9de2c7573",
+          "version": "1.0.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/vapor/console-kit.git",
         "state": {
           "branch": null,
-          "revision": "de99d83c9f3c298371002729cc0601e4b5d9e0c9",
-          "version": "4.0.0-rc.1"
+          "revision": "f674ff0d037346ad5f9a4feb5088b769cdb9e5d3",
+          "version": "4.0.0"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/vapor/leaf.git",
         "state": {
           "branch": null,
-          "revision": "c3941cfaac2ef6e29a28bd613238707c13e91e4c",
-          "version": "4.0.0-rc.1.1"
+          "revision": "409ad1c610c503335d2033062199c3c2778bffd9",
+          "version": "4.0.0-rc.1.2"
         }
       },
       {
@@ -69,16 +69,16 @@
         "repositoryURL": "https://github.com/vapor/leaf-kit.git",
         "state": {
           "branch": null,
-          "revision": "8aa48e7b2bbc9eae03e97970a4839e2228009307",
-          "version": "1.0.0-rc.1.3"
+          "revision": "b6c8edd71a5387c4b48ecafe5be4cadd4f896193",
+          "version": "1.0.0-rc.1.4"
         }
       },
       {
         "package": "mxfitness-model",
-        "repositoryURL": "https://github.com/jagreenwood/mxfitness-model.git",
+        "repositoryURL": "https://github.com/cbuckley88/mxfitness-model.git",
         "state": {
           "branch": "master",
-          "revision": "fa8f5aa1bc5620200b19568206557de1212887fa",
+          "revision": "c224dfcefde5c8061a3009202bc3565978104fd8",
           "version": null
         }
       },
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {
           "branch": null,
-          "revision": "dbc3eafdbe243e9a46eeb6fd7d99266bee52f89f",
-          "version": "4.0.0-rc.1"
+          "revision": "35da702471cbcc308f58d38aa8fea971fa3fb166",
+          "version": "4.0.0"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/swift-server/swift-backtrace.git",
         "state": {
           "branch": null,
-          "revision": "eaf2cef011c0c23d1701aa60b364def8015dc3c7",
-          "version": "1.1.1"
+          "revision": "f2fd8c4845a123419c348e0bc4b3839c414077d5",
+          "version": "1.2.0"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
         "state": {
           "branch": null,
-          "revision": "584c0d06c46233d3e1759695e5eff495b12edcd2",
-          "version": "2.7.0"
+          "revision": "ae213938e151964aa691f0e902462fbe06baeeb6",
+          "version": "2.7.1"
         }
       },
       {
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "8e95515373576fd95a059e5b68a1b98494ca2fce",
-          "version": "4.0.0-rc.3.10"
+          "revision": "cac009e6699b27b38335f69f9ce93d6b6c81f79f",
+          "version": "4.0.0-rc.3.11"
         }
       },
       {

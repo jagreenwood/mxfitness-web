@@ -16,9 +16,9 @@ img {
     top: 35%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: #f5f5f5;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 }
 
 form {
@@ -36,23 +36,38 @@ form {
 input {
     width: 80%;
    height: 40px;
+   
 }
 
+input,
+input[type="email"],
+textarea {
+    background-color: #32364a;  
+}
+/* 
 .btn {
     width: 50%;
-}
+    color: #fff;
+} */
 
 a {
     text-decoration: none;
 }
 
 @media only screen and (max-width: 600px) {
+
+    body {
+        background-color:  #f5f5f5;
+    }
+
     .card {
         width: 100%;
+        background-color: transparent;
+        box-shadow: none;
     }
 
     .btn, input {
-        border: 1px solid #bfbfbf;
+        border: 1px solid #DC6180;
         background-color: #fff;    
     }
 

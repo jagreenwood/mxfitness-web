@@ -6,15 +6,15 @@ Context:
 - user -> Auth'd User Object
 - response -> User Object
 -->
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="user.css">
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/styles/user.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="background">
     <div class="top">
         <div class="top-content">
             <div class="top-content-left">
-                 <img src="#(user.avatar)" alt="user.avatar">
-                <!-- <img src="/images/company-logo.png"> -->
+                <img src="#(user.avatar)" alt="user.avatar"> 
             </div>
             <div class="top-content-right">
                 <h1 class="user-info">#(user.name)</h1>
@@ -30,19 +30,27 @@ Context:
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
+        #for(workout in user.workouts) {
             <div class="stats-container">
-                <p class="stats bold">#(user.workout-name)</p>
-                <p class="stats">#(user.total-workout-duration)</p>
+                <div class="stats circle">
+                    <span class="stats number"></span>
+                </div>
+                <p class="stats bold">#(workout.name)</p>
+                <p class="stats time">#(workout.workout-duration)</p>
+                <!-- <p class="stats bold">Running</p>
+                <p class="stats time">01:12:43</p> testing purposes -->
             </div>
+        }
         <br>
     </div>
     <div class="bottom-content-right">
-        <button type="button" data-toggle="modal" data-target="#addWorkout" onclick=openModal() >Add Workout</button>
+        <button type="button" data-toggle="modal" data-target="#addWorkout" onclick=openModal()>Add Workout</button>
     </div>
 </div> 
+
 <div id="infoModal">
     <div class="modal">
-        <form action="/user/#(response.user.id)/folder" method="POST"></form>
+        <form action="/user/#(response.user.workout)" method="POST"></form>
             <div class="modal-close">
             <span  class="modal-span" onclick=closeModal() >&times;</span>
             </div>
@@ -50,16 +58,24 @@ Context:
                 <h1 class="modal-h1">Enter a new Workout</h1>
                 <input type="name" name="name" class="form-control modal-input" id="name" placeholder="Workout Name"/>
                 <input type="date" name="start-date" class="form-control modal-input" id="name" placeholder="Start Date"/>
-                 <input type="submit" class="modal-btn" value="Submit" />
+                <input type="submit" class="modal-btn" value="Submit" />
             </div>
         </form>
     </div>
 </div>
 <script>
-    function openModal() {
-        document.getElementById('infoModal').style.display="block";
+/* modal funcs */
+function openModal() {
+    document.getElementById('infoModal').style.display="block";
+}
+function closeModal() {
+    document.getElementById('infoModal').style.display="none";
+}
+/* number workouts  */
+var stat = document.querySelectorAll('.number');
+if (stat) {
+    for (var i = 0; i < stat.length ; i++) {
+        stat[i].innerHTML= [i + 1];    
     }
-    function closeModal() {
-        document.getElementById('infoModal').style.display="none";
-    }
+}
 </script>

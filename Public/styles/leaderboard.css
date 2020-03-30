@@ -1,61 +1,48 @@
-.nav {
-    overflow: hidden;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    height: 40px
+img {
+    border-radius: 100%;
+    border: 2px solid #000;
+    display: block;
+    max-width: 230px;
+    max-height: 95px;
+    width: auto;
+    height: auto;
 }
 
 .nav-cell {
     display: flex;
     justify-content: flex-end;
-    margin-top: 32px;
 }
 
-
+.nav-img {
+    width: 48px;
+}
 
 .nav-item-name {
-    color: #000;
-    margin-right: 64px;
-    margin-top: 7px;
+    margin: auto 24px;
 }
 
 
-img {
-    height: 32px;
-    border-radius: 100%;
-    margin-right: 32px;
-}
 
-.background {
-    background-color: #ebebeb;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.top {
-    width: 100%;
-    display: flex;
-}
-
-.top-content, .bottom-content {
-    display: flex;
-    justify-content: center;
+.bottom-content {
     width: 50%;
-    margin: auto;
     padding: 40px;
 }
 
-.title {
-    font-size: 60px;
-}
-
-.user-info {
-    padding: 5px;
+.top-content {
+    width: 25%;
+    padding: 40px;
 }
 
 .top-content-right {
     margin-left: 40px;
+}
+
+.leaderboard {
+    margin-top: 16px;
+}
+
+.user-info {
+    padding: 5px;
 }
 
 .top-content-left {
@@ -67,106 +54,197 @@ img {
     margin: auto;
     display: flex;
     margin-top: 96px;
-}
-
-.bottom-content {
-    flex-direction: column;
-    text-align: center;
-}
-
-.bottom-content-left, .bottom-content-right {
-    width: 50%;
-    text-align: center;
-}
-
-.stats-container {
-    padding: 8px;
-    margin: 10px auto;
-    border: 1px solid #888;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 80%
-}
-
-.stats-li {
-    /* width: fit-content; */
-    margin: 10px auto;
-    padding: 0;
-}
-
-.stats-li:nth-child(odd) {
-    background-color: #eaedfc;
+    justify-content: space-around;
 }
 
 .stats {
-    width: fit-content;
-    margin: 10px auto;
-    display: flex;
+    width: 50%;
+    font-weight: bold;
+    letter-spacing: 2.6px;
 }
 
-.stat-title {
-    text-decoration: underline;
+.circle {
+    height: 33px;
+    border: 1px solid #fff;
+    width: 41px;
+    border-radius: 100%;
+    margin-right: 20px;
 }
 
-.stat {
-    margin: 10px;
+.total-workout:nth-of-type(1) .total-circle,
+.total-duration:nth-of-type(1) .duration-circle{
+    background-color: #C9B037;
 }
 
-.stat-time {
-    color: #939393;
+.total-workout:nth-of-type(2) .total-circle,
+.total-duration:nth-of-type(2) .duration-circle{
+    background-color: #D7D7D7;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.total-workout:nth-of-type(3) .total-circle,
+.total-duration:nth-of-type(3) .duration-circle{
+    background-color: #AD8A56;
 }
 
-li {
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-}
+
 
 p, h1 {
     margin: 0;
 }
 
+h1 {
+    padding: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+button {
+    float: right;
+    height: 40px;
+    width: 140px;
+}
+
+/* modal */
+
+.modal {
+    display: none;
+}
+
+form {
+    margin: 0;
+}
+
+.modal-dialog {
+    background-color: #f7f7f7;
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+    height: 200px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+input {
+    margin: 10px;
+    padding: 2px;
+    height: 40px;
+}
+
+#infoModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.modal {
+    margin: 5% auto;
+    width: 476px;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-close {
+    width: 100%;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.modal-top {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.modal-span {
+    float: right;
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+.modal-span:hover,
+.modal-span:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+     
+.modal-h1 {
+    font-family: Urbano;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 14px;
+    font-stretch: expanded;
+
+} 
+
+
+
+.modal-btn {
+    margin: 10px auto;    
+    height: 40px;
+}
+
+   
 
 @media only screen and (max-width: 600px) {
     .top, .bottom {
-        width: 100%;
-    }
-    
-    .bottom {
-        flex-direction: column;
-        margin-top: 20px;
+        width: 100%
     }
 
     .top {
         flex-direction: column;
     }
-    
-    .top-content, .bottom-content {
-        width: auto;
-    }
 
-    .top-content-right, .top-content-left, .bottom-content-left, .bottom-content-right {
-        margin: auto;
+    .top-content {
+        padding: 0;
         width: 100%;
     }
 
-    .top-content-left {
-        margin-right: 32px;
-        margin-left: -32px;
+    .top-content-right, .top-content-left, .bottom-content-left {
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    img {
+        margin: 20px auto;
     }
 
     .nav-cell {
         width: max-content;
-        display: flex;
-        flex-direction: column;
+        display: block;
         margin: auto;
         margin-bottom: 20px;
+        text-decoration: underline;
+        padding: 0;
     }
 
     .nav-item {
@@ -174,25 +252,39 @@ p, h1 {
         float: none;
     }
 
-    .title {
-        font-size: 32px;
+    .stats {
+        margin: auto;
     }
 
-    img, .nav-item-name {
-        margin: 0 auto;
+    .number,
+    .duration-number {
+        margin-top: 5px;
     }
 
-    img {
-        height: 62px;
-        margin-bottom: 20px;
+
+    .bottom {
+        flex-direction: column;
+        margin-top: 10px;
     }
+
 
     .stats-container {
-        width: 95%;
+        width: auto;
+        margin: auto 10px;
+    }
+    
+    button {
+        display: flex;
+        margin: 15 auto;
+        padding: 13px;
+        float: none;
+        justify-content: center;
+        height: 48px;
     }
 
-    .stats-li {
-        display: flex;
-        flex-direction: column;
+    .modal {
+        width: 85%;
     }
+   
 }
+
