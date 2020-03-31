@@ -14,12 +14,12 @@ Context:
     <div class="top">
         <div class="top-content">
             <div class="top-content-left">
-                <img src="#(user.avatar)" alt="user.avatar"> 
+                <img src="#(response.avatar)" alt="avatar"> 
             </div>
             <div class="top-content-right">
                 <h1 class="user-info">#(user.name)</h1>
-                <p class="user-info"><span>#(user.total-workout-count)</span> workouts</p>
-                <p class="user-info">#(user.total-workout-duration)</p>
+                <p class="user-info"><span>#(response.total-workout-count)</span> workouts</p>
+                <p class="user-info">#(response.total-workout-duration)</p>
             </div> 
         </div>
         <div class="nav-cell">
@@ -30,17 +30,15 @@ Context:
 <div class="bottom">
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
-        #for(workout in user.workouts) {
+        #for(workout in response.workouts):
             <div class="stats-container">
                 <div class="stats circle">
                     <span class="stats number"></span>
                 </div>
-                <p class="stats bold">#(workout.name)</p>
-                <p class="stats time">#(workout.workout-duration)</p>
-                <!-- <p class="stats bold">Running</p>
-                <p class="stats time">01:12:43</p> testing purposes -->
+                <p class="stats bold">#(user.workouts.name)</p>
+                <p class="stats time">#(response.workout-duration)</p>
             </div>
-        }
+        #endfor
         <br>
     </div>
     <div class="bottom-content-right">
