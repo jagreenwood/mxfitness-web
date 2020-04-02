@@ -43,7 +43,7 @@ LeaderboardUser
                     <span class="stats number total-number"></span>
                 </div>
                 <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.total-workout-count)</p>
+                <p class="stats">#(response.total-workout-count)</p>
             </div>
         #endfor
         <br>
@@ -56,7 +56,7 @@ LeaderboardUser
                     <span class="stats number time"></span>
                 </div>
                 <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.total-workout-duration)</p>
+                <p class="stats">#(response.total-workout-duration)</p>
             </div> 
         #endfor
         <br>
