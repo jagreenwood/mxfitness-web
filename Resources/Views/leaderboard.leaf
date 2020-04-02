@@ -43,7 +43,7 @@ LeaderboardUser
                     <span class="stats number total-number"></span>
                 </div>
                 <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.password)</p>
+                <p class="stats">#(user.total-workout-count)</p>
             </div>
         #endfor
         <br>
