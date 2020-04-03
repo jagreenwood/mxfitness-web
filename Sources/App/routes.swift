@@ -67,7 +67,7 @@ func apiRoutes(_ app: Application) throws {
     /// POST Workout
     tokenProtected.post("user", "workout", use: WorkoutController.create)
     /// GET User Challenge
-    tokenProtected.get("user", "challenge", use: ChallengeController.)
+    tokenProtected.get("user", "challenge", use: ChallengeController.userChallenge)
     /// GET Leaderboard
     tokenProtected.get("challenge", "leaderboard", use: ChallengeController.leaderboard)
 }

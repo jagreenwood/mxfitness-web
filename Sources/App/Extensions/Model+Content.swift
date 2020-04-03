@@ -13,3 +13,4 @@ extension BaseUserResponse: Content { }
 extension WorkoutResponse: Content { }
 extension TokenResponse: Content { }
 extension Leaderboard: Content { }
+extension ChallengeResponse: Content { }
