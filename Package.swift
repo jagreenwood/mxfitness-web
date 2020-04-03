@@ -12,7 +12,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0-rc"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
-        .package(url: "https://github.com/cbuckley88/mxfitness-model.git", .branch("master"))
+        .package(url: "https://github.com/jagreenwood/mxfitness-model.git", .branch("master"))
     ],
     targets: [
         .target(name: "App", dependencies: [

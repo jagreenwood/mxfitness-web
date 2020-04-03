@@ -17,7 +17,7 @@ Context:
                 <img src="#(response.avatar)" alt="avatar"> 
             </div>
             <div class="top-content-right">
-                <h1 class="user-info">#(user.name)</h1>
+                <h1 class="user-info">#(response.name)</h1>
                 <p class="user-info"><span>#(response.total-workout-count)</span> workouts</p>
                 <p class="user-info">#(response.total-workout-duration)</p>
             </div> 

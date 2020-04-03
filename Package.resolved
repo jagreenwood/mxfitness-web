@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "638232e98a9bcd2087c6fef22a0af178c1ba6dd1",
-          "version": "1.0.0-rc.1.13"
+          "revision": "0e855b630c2ef005465d904d1de2263cdbeca990",
+          "version": "1.0.0-rc.1.15"
         }
       },
       {
@@ -75,10 +75,10 @@
       },
       {
         "package": "mxfitness-model",
-        "repositoryURL": "https://github.com/cbuckley88/mxfitness-model.git",
+        "repositoryURL": "https://github.com/jagreenwood/mxfitness-model.git",
         "state": {
           "branch": "master",
-          "revision": "c224dfcefde5c8061a3009202bc3565978104fd8",
+          "revision": "ec3ebbaea70883340512d4bfb1c3b09008f1a47a",
           "version": null
         }
       },
@@ -159,8 +159,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "a27a07719ca785bcaca019a5b9fe1814b981b4a2",
-          "version": "2.15.0"
+          "revision": "e876fb37410e0036b98b5361bb18e6854739572b",
+          "version": "2.16.0"
         }
       },
       {
