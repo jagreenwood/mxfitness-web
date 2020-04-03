@@ -1,41 +1,8 @@
-@import url(//db.onlinewebfonts.com/c/3b7ae3b725a8d7bcc2e2d9459d5d30f7?family=Depot+New);
 
-* {
-    font-family: "Depot New", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-.nav {
-    overflow: hidden;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    height: 40px
-}
-
-.nav-cell {
-    width: 50%;
-    margin: auto;
-}
-
-.nav-item {
-    color: #000;
-    margin: auto;
-    padding: 10px;
-    float: right;
-    text-decoration: none;
-    position: absolute;
-    top: 5;
-    right: 140px;
-}
 
 img {
     border-radius: 100%;
+    border: 2px solid #000;
     display: block;
     max-width: 230px;
     max-height: 95px;
@@ -43,28 +10,18 @@ img {
     height: auto;
 }
 
-.background {
-    background-color: #ebebeb;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-}
-
-.top {
-    width: 100%;
-    display: flex;
-}
 
 .top-content, .bottom-content {
-    display: flex;
-    justify-content: center;
     width: 50%;
-    margin: auto;
     padding: 40px;
 }
 
 .top-content-right {
     margin-left: 40px;
+}
+
+.leaderboard {
+    margin-top: 16px;
 }
 
 .user-info {
@@ -82,39 +39,155 @@ img {
     margin-top: 96px;
 }
 
-.bottom-content {
-    flex-direction: column;
-    text-align: center;
-}
-
-.bottom-content-left, .bottom-content-right {
+.bottom-content-right {
     width: 50%;
-}
-
-.stats-container {
-    padding: 25px;
 }
 
 .stats {
-    text-align: center;
     width: 50%;
+    letter-spacing: 2.6px;
 }
+
+.time {
+    color: #686a76;
+}
+
+.circle {
+    height: 33px;
+    border: 1px solid #fff;
+    width: 41px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+
 
 p, h1 {
     margin: 0;
 }
 
 h1 {
-    font-size: 24px;
+    padding: 10px;
 }
 
 .bold {
     font-weight: bold;
-    font-weight: 18px;
+    color: #afb1be;
 }
 
 button {
     float: right;
+    height: 60px;
+    width: 170px;
+}
+
+/* modal */
+
+.modal {
+    display: none;
+}
+
+form {
+    margin: 0;
+}
+
+.modal-dialog {
+    background-color: #f7f7f7;
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+    height: 200px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+input {
+    margin: 10px;
+    padding: 5px;
+    height: 40px;
+    background-color: #393d52;
+    border: 1px solid #afb1be;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+/* modal */
+
+#infoModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.modal {
+    margin: 5% auto;
+    width: 476px;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #636178;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-close {
+    width: 100%;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.modal-top {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.modal-span {
+    float: right;
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+.modal-span:hover,
+.modal-span:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    
+.modal-h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 14px;
+    font-stretch: expanded;
+
+}  
+
+.modal-btn {
+    margin: 20px auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -125,18 +198,22 @@ button {
     .top {
         flex-direction: column;
     }
-    
-    .top-content, .bottom-content {
-        width: max-content;
+
+    .top-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        width: auto;
     }
 
     .top-content-right, .top-content-left, .bottom-content-left, .bottom-content-right {
         margin: auto;
+        width: 100%;
+        text-align: center;
     }
 
-    .top-content-left {
-        margin-right: 32px;
-        margin-left: -32px;
+    img {
+        margin: 0 auto;
     }
 
     .nav-cell {
@@ -153,8 +230,16 @@ button {
         float: none;
     }
 
+    h1.stats {
+        display: none;
+    }
+
     .stats {
-        width: 100%;
+        margin: auto;
+    }
+
+    .number {
+        margin-top: 5px;
     }
 
     .bottom {
@@ -165,11 +250,17 @@ button {
     button {
         display: flex;
         margin: 15 auto;
-        border: 1px solid grey;
         padding: 13px;
-        background-color: #f3f3f3;
-        border: 1px solid #bfbfbf;
         float: none;
+        justify-content: center;
+        height: 59px;
+        width: 195px;
+    }
+
+    .modal {
+        width: 85%;
+        height: 400px;
     }
    
 }
+

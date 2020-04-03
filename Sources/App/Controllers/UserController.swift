@@ -8,6 +8,7 @@
 import Fluent
 import Vapor
 import Leaf
+import Model
 
 struct UserController {
     static func user(for id: UUID, request: Request) -> EventLoopFuture<User> {
@@ -78,7 +79,7 @@ extension UserController {
         DispatchQueue.global().async {
             do {
                 let userResponse = try user(for: request.parameters.get("id")!, request: request).wait().response(request).wait()
-                let authUserResponse = try authUser.response(request).wait()
+                let authUserResponse = try authUser.baseResponse()
 
                 promise.succeed(AuthenticatedResponse(user: authUserResponse, response: userResponse))
             } catch {
@@ -90,7 +91,7 @@ extension UserController {
     }
 
     static func sessionLogout(_ request: Request) throws -> EventLoopFuture<Response> {
-        request.session.unauthenticate(User.self)
+        request.auth.logout(User.self)
         return request.eventLoop.makeSucceededFuture(request.redirect(to: "/"))
     }
 }
