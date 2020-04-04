@@ -36,10 +36,10 @@ public func configure(_ app: Application) throws {
 
     // create a new JSON encoder/decoder that uses unix-timestamp dates
     let encoder = JSONEncoder()
-    encoder.dateEncodingStrategy = .secondsSince1970
+    encoder.dateEncodingStrategy = .iso8601
 
     let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .secondsSince1970
+    decoder.dateDecodingStrategy = .iso8601
 
     // override the global encoder used for the `.json` media type
     ContentConfiguration.global.use(encoder: encoder, for: .json)
