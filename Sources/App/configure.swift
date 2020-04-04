@@ -5,12 +5,18 @@ import Leaf
 
 // configures your application
 public func configure(_ app: Application) throws {
-    app.databases.use(.postgres(
-        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-        username: Environment.get("DATABASE_USERNAME") ?? "postgres",
-        password: Environment.get("DATABASE_PASSWORD") ?? "",
-        database: Environment.get("DATABASE_NAME") ?? "mxfitness"
-    ), as: .psql)
+    if app.environment.isRelease {
+        try app.databases.use(.postgres(
+            url: URL(string: Environment.get("DATABASE_URL")!)!
+        ), as: .psql)
+    } else {
+        app.databases.use(.postgres(
+            hostname: Environment.get("DATABASE_HOST") ?? "localhost",
+            username: Environment.get("DATABASE_USERNAME") ?? "postgres",
+            password: Environment.get("DATABASE_PASSWORD") ?? "",
+            database: Environment.get("DATABASE_NAME") ?? "mxfitness"
+        ), as: .psql)
+    }
 
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     print(app.directory.publicDirectory)
@@ -31,10 +37,10 @@ public func configure(_ app: Application) throws {
 
     // create a new JSON encoder/decoder that uses unix-timestamp dates
     let encoder = JSONEncoder()
-    encoder.dateEncodingStrategy = .secondsSince1970
+    encoder.dateEncodingStrategy = .iso8601
 
     let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .secondsSince1970
+    decoder.dateDecodingStrategy = .iso8601
 
     // override the global encoder used for the `.json` media type
     ContentConfiguration.global.use(encoder: encoder, for: .json)
