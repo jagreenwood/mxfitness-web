@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "0e855b630c2ef005465d904d1de2263cdbeca990",
-          "version": "1.0.0-rc.1.15"
+          "revision": "638232e98a9bcd2087c6fef22a0af178c1ba6dd1",
+          "version": "1.0.0-rc.1.13"
         }
       },
       {
@@ -159,8 +159,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "e876fb37410e0036b98b5361bb18e6854739572b",
-          "version": "2.16.0"
+          "revision": "a27a07719ca785bcaca019a5b9fe1814b981b4a2",
+          "version": "2.15.0"
         }
       },
       {
