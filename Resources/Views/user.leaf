@@ -55,9 +55,9 @@ Context:
             </div>
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
-                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name"/>
-                <input type="date" name="start-date" class="modal-input" id="date" placeholder="Start Date" onchange=getUNIX()>
-                <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Workout Duration (minutes)">
+                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name" required>
+                <input type="date" name="start-date" class="modal-input" id="date" placeholder="MM/DD/YYYY" onchange=getUNIX() required>
+                <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
         </form>
@@ -68,17 +68,18 @@ Context:
 function openModal() {
     document.getElementById('infoModal').style.display="block";
 }
+
 function closeModal() {
     document.getElementById('infoModal').style.display="none";
 }
 
-/*get UNIX timestamp */
+/*get ISO timestamp */
 function getUNIX() {
     var date = new Date(document.getElementById("date").value);
-    var timestamp = date.getTime();
+    var timestamp = date.toISOString();
     console.log(timestamp);
+    return timestamp;
 }
-
 
 /* number workouts  */
 var stat = document.querySelectorAll('.number');
