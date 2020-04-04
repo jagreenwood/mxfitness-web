@@ -47,18 +47,17 @@ Context:
         </div>
     #endif
 </div> 
-
 <div id="infoModal">
     <div class="modal">
-        <form action="/user/#(response.user.workout)/folder" method="POST" enctype="multipart/form-data"></form>
+        <form action="/workouts" method="POST" enctype="multipart/form-data">
             <div class="modal-close">
                 <span  class="modal-span" onclick=closeModal() >&times;</span>
             </div>
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
-                <input type="name" name="name" class="modal-input" id="name" placeholder="Workout Name"/>
-                <input type="date" name="start-date" class="modal-input" id="date" placeholder="Start Date"/>
-                <input type="number" id="duration" class="modal-input" name="workout-duration" min="1" max="500" placeholder="Workout Duration (minutes)">
+                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name"/>
+                <input type="date" name="start-date" class="modal-input" id="date" placeholder="Start Date" onchange=getUNIX()>
+                <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Workout Duration (minutes)">
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
         </form>
@@ -72,6 +71,15 @@ function openModal() {
 function closeModal() {
     document.getElementById('infoModal').style.display="none";
 }
+
+/*get UNIX timestamp */
+function getUNIX() {
+    var date = new Date(document.getElementById("date").value);
+    var timestamp = date.getTime();
+    console.log(timestamp);
+}
+
+
 /* number workouts  */
 var stat = document.querySelectorAll('.number');
 if (stat) {
