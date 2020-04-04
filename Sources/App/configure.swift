@@ -5,12 +5,18 @@ import Leaf
 
 // configures your application
 public func configure(_ app: Application) throws {
-    app.databases.use(.postgres(
-        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-        username: Environment.get("DATABASE_USERNAME") ?? "postgres",
-        password: Environment.get("DATABASE_PASSWORD") ?? "",
-        database: Environment.get("DATABASE_NAME") ?? "mxfitness"
-    ), as: .psql)
+    if app.environment.isRelease {
+        try app.databases.use(.postgres(
+            url: URL(string: Environment.get("DATABASE_URL")!)!
+        ), as: .psql)
+    } else {
+        app.databases.use(.postgres(
+            hostname: Environment.get("DATABASE_HOST") ?? "localhost",
+            username: Environment.get("DATABASE_USERNAME") ?? "postgres",
+            password: Environment.get("DATABASE_PASSWORD") ?? "",
+            database: Environment.get("DATABASE_NAME") ?? "mxfitness"
+        ), as: .psql)
+    }
 
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     app.middleware.use(SessionsMiddleware(session: app.sessions.driver))
