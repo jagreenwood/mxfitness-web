@@ -24,8 +24,8 @@ extension WorkoutController {
     }
 
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
-        try createWorkout(request).map {
-            request.redirect(to: "/users/\($0)/workouts")
+        try createWorkout(request).flatMapThrowing {
+            try request.redirect(to: "/user/\($0.$user.id)")
         }
     }
 }
