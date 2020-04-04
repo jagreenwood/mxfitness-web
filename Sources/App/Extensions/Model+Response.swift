@@ -52,7 +52,7 @@ extension User {
             throw Abort(.internalServerError)
         }
         
-        return try BaseUserResponse(id: requireID().uuidString, name: name, avatar: avatar, role: role.rawValue)
+        return try BaseUserResponse(id: requireID().uuidString, name: name, avatar: avatar.absoluteString, role: role.rawValue)
     }
 
     func response(_ request: Request) throws -> EventLoopFuture<UserResponse> {
@@ -66,7 +66,7 @@ extension User {
             .flatMapThrowing { workoutResponses in
                 try UserResponse(id: self.requireID().uuidString,
                                  name: self.name,
-                                 avatar: avatar,
+                                 avatar: avatar.absoluteString,
                                  role: self.role.rawValue,
                                  workouts: workoutResponses,
                                  totalWorkoutCount: self.workouts.count,
