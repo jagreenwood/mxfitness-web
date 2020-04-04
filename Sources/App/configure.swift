@@ -18,6 +18,10 @@ public func configure(_ app: Application) throws {
         ), as: .psql)
     }
 
+    if let port = Environment.get("PORT").flatMap(Int.init) {
+        app.server.configuration.port = port
+    }
+
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     app.middleware.use(SessionsMiddleware(session: app.sessions.driver))
     app.views.use(.leaf)
