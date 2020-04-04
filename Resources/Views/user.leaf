@@ -35,8 +35,8 @@ Context:
                 <div class="stats circle">
                     <span class="stats number"></span>
                 </div>
-                <p class="stats bold">#(challenge.type)</p>
-                <p class="stats time">#(challenge.duration)</p> 
+                <p class="stats bold">#(workout.type)</p>
+                <p class="stats time">#(workout.duration)</p> 
             </div>
         #endfor 
         <br>
