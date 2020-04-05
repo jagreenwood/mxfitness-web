@@ -21,8 +21,8 @@ extension Challenge {
             .flatMapThrowing {
                 try ChallengeResponse(id: self.requireID().uuidString,
                                       name: self.name,
-                                      startDate: self.startDate,
-                                      endDate: self.endDate,
+                                      startDate: self.startDate.iso8601,
+                                      endDate: self.endDate.iso8601,
                                       users: self.users.baseResponses())
         }
     }
@@ -86,6 +86,7 @@ extension Workout {
         $user.load(on: request.db)
             .flatMapThrowing {
                 try WorkoutResponse(id: self.requireID().uuidString,
+                                    date: self.date.iso8601,
                                     duration: self.duration,
                                     type: self.type,
                                     user: self.user.baseResponse())

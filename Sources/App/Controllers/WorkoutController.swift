@@ -55,6 +55,7 @@ private extension WorkoutController {
                 }
 
                 let workout = try Workout(duration: workoutCreate.duration,
+                                          date: workoutCreate.date.date(),
                                           type: workoutCreate.type,
                                           userID: user.requireID(),
                                           challengeID: challenge.requireID())

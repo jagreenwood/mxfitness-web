@@ -30,10 +30,10 @@ public func configure(_ app: Application) throws {
         app.leaf.cache.isEnabled = false
     }
 
-    app.migrations.add(Challenge.Migration())
-    app.migrations.add(User.Migration())
-    app.migrations.add(UserToken.Migration())
-    app.migrations.add(Workout.Migration())
+    app.migrations.add(Challenge.ChallengeCreate())
+    app.migrations.add(User.UserCreate())
+    app.migrations.add(UserToken.UserTokenCreate())
+    app.migrations.add(Workout.WorkoutCreate())
 
     // set up commands
     app.commands.use(CreateCommandGroup(), as: CreateCommandGroup.name)
