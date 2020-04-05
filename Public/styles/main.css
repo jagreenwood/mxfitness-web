@@ -92,8 +92,8 @@ button,
 .modal-btn, 
 .btn {
     width: 50%;
-    color: #ffd2a4;
-    border: 3px solid #ffd2a4;
+    color: #fff;
+    border: 3px solid #ad94de;
     border-radius: 10px;
     height: 2.5em;
     background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
