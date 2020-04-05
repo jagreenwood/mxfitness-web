@@ -78,7 +78,7 @@
         "repositoryURL": "https://github.com/jagreenwood/mxfitness-model.git",
         "state": {
           "branch": "master",
-          "revision": "8dd5f2d39b290060821f7e91c937caded8db8bd1",
+          "revision": "16e7606e0d5a1ed27bcfbadddd69caad582794f4",
           "version": null
         }
       },
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/vapor/postgres-nio.git",
         "state": {
           "branch": null,
-          "revision": "4871046bec40a5dbbc6aca572f655a765faba04f",
-          "version": "1.0.0-rc.1.2"
+          "revision": "a528171a580b56fc38fd505bdb7d5de73e68a69a",
+          "version": "1.0.0-rc.2"
         }
       },
       {

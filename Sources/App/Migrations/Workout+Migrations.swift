@@ -8,13 +8,14 @@
 import Fluent
 
 extension Workout {
-    struct Migration: Fluent.Migration {
-        var name: String { "CreateWorkout" }
+    struct WorkoutCreate: Fluent.Migration {
+        var name: String { "\(Self.self)" }
 
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema(Workout.schema)
                 .id()
                 .field("duration", .double, .required)
+                .field("date", .date, .required)
                 .field("type", .string, .required)
                 .field("user_id", .uuid, .required, .references("users", "id"))
                 .field("challenge_id", .uuid, .required, .references("challenges", "id"))

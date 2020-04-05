@@ -8,8 +8,8 @@
 import Fluent
 
 extension Challenge {
-    struct Migration: Fluent.Migration {
-        var name: String { "CreateChallenge" }
+    struct ChallengeCreate: Fluent.Migration {
+        var name: String { "\(Self.self)" }
 
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema(Challenge.schema)

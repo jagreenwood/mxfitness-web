@@ -79,7 +79,7 @@ extension ChallengeController {
     static func sessionCreate(_ request: Request) throws -> EventLoopFuture<Response> {
         let create = try request.content.decode(ChallengeCreate.self)
 
-        return Challenge(name: create.name, startDate: create.startDate, endDate: create.endDate).save(on: request.db).map {
+        return try Challenge(name: create.name, startDate: create.startDate.date(), endDate: create.endDate.date()).save(on: request.db).map {
             request.redirect(to: "/challenges")
         }
     }

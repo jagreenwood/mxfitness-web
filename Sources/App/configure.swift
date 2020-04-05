@@ -18,6 +18,10 @@ public func configure(_ app: Application) throws {
         ), as: .psql)
     }
 
+    if let port = Environment.get("PORT").flatMap(Int.init) {
+        app.server.configuration.port = port
+    }
+
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     print(app.directory.publicDirectory)
     app.middleware.use(SessionsMiddleware(session: app.sessions.driver))
@@ -27,10 +31,10 @@ public func configure(_ app: Application) throws {
         app.leaf.cache.isEnabled = false
     }
 
-    app.migrations.add(Challenge.Migration())
-    app.migrations.add(User.Migration())
-    app.migrations.add(UserToken.Migration())
-    app.migrations.add(Workout.Migration())
+    app.migrations.add(Challenge.ChallengeCreate())
+    app.migrations.add(User.UserCreate())
+    app.migrations.add(UserToken.UserTokenCreate())
+    app.migrations.add(Workout.WorkoutCreate())
 
     // set up commands
     app.commands.use(CreateCommandGroup(), as: CreateCommandGroup.name)

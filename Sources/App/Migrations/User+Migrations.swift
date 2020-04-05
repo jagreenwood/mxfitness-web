@@ -9,8 +9,8 @@ import Fluent
 import Vapor
 
 extension User {
-    struct Migration: Fluent.Migration {
-        var name: String { "CreateUser" }
+    struct UserCreate: Fluent.Migration {
+        var name: String { "\(Self.self)" }
 
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("users")
