@@ -56,7 +56,7 @@ Context:
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
                 <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name" required>
-                <input type="date" name="start-date" class="modal-input" id="date" placeholder="MM/DD/YYYY" onchange=getUNIX() required>
+                <input type="name" name="date" class="modal-input" id="date" placeholder="MM/DD/YYYY" onchange=getUNIX() required>
                 <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
@@ -76,7 +76,7 @@ function closeModal() {
 /*get ISO timestamp */
 function getUNIX() {
     var date = new Date(document.getElementById("date").value);
-    var timestamp = date.toISOString();
+    var timestamp = date.toISOString().split('.')[0]+"Z";
     console.log(timestamp);
     return timestamp;
 }
