@@ -11,7 +11,7 @@ POST Context:
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="card">
-    <img src="/images/company-logo.png">
+   <h1>Login</h1>
     <form action="/login" method="POST">
         <div class="row">
             <input type="email" name="email" id="email" placeholder="Email" />

@@ -6,15 +6,7 @@ html, body {
 
 body {
     margin: 0;
-    background: #7579ff ; /* old browsers */
-    background: -moz-linear-gradient(-45deg,  #EA5C54  0%, #bb6dec 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#EA5C54 ), color-stop(100%,#bb6dec)); 
-    background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%);
-    background: -o-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%);
-    background: -ms-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); 
-    background: linear-gradient(135deg,  #EA5C54  0%,#bb6dec 100%);
-    /* background: linear-gradient(to top, #b224ef 0%, #7579ff 100%); */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EA5C54 ', endColorstr='#bb6dec',GradientType=1 );
+    background: #fff;
 }
 
 
@@ -100,8 +92,8 @@ button,
 .modal-btn, 
 .btn {
     width: 50%;
-    color: #DC6180;
-    border: 3px solid #DC6180;
+    color: #ffd2a4;
+    border: 3px solid #ffd2a4;
     border-radius: 10px;
     height: 2.5em;
     background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
