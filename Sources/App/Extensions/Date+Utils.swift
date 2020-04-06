@@ -10,7 +10,7 @@ import Vapor
 private extension DateFormatter {
     static var dateInputFormat: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "MM-dd-yyyy"
 
         return formatter
     }()

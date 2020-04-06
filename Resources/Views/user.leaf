@@ -18,7 +18,7 @@ Context:
 <script>
 $( document ).ready(function() {
     $("#date").datepicker({ 
-        format: 'yyyy-mm-dd'
+        format: 'mm-dd-yyyy'
     });
     $("#date").on("change", function () {
         var newDate = $(this).val();
@@ -75,7 +75,7 @@ $( document ).ready(function() {
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
                 <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name" required>
-                <input type="date" id="date" name="date" class="modal-input"  placeholder="YYYY/MM/DD" required>
+                <input type="date" id="date" name="date" class="modal-input"  placeholder="MM-DD-YYYY" required pattern="\d{2}-\d{2}-\d{4}" required>
                 <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
