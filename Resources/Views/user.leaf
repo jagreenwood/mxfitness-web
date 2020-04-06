@@ -9,6 +9,24 @@ Context:
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/styles/main.css">
 <link rel="stylesheet" type="text/css" href="/styles/user.css">
+<!-- libs needed for datepicker() -->
+<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
+<script>
+$( document ).ready(function() {
+    $("#date").datepicker({ 
+        format: 'yyyy-mm-dd'
+    });
+    $("#date").on("change", function () {
+        var newDate = $(this).val();
+        return newDate;
+    });
+}); 
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8"/>
 <div class="background">
@@ -50,14 +68,14 @@ Context:
 </div> 
 <div id="infoModal">
     <div class="modal">
-        <form id="formElem" enctype="application/x-www-form-urlencoded">
+        <form action="/workouts" method="POST">
             <div class="modal-close">
                 <span  class="modal-span" onclick=closeModal() >&times;</span>
             </div>
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
                 <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name" required>
-                <input type="date" name="date" class="modal-input" id="date" placeholder="MM/DD/YYYY" required>
+                <input type="date" id="date" name="date" class="modal-input"  placeholder="YYYY/MM/DD" required>
                 <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
@@ -73,7 +91,6 @@ function openModal() {
 function closeModal() {
     document.getElementById('infoModal').style.display="none";
 }
-
 
 /* number workouts  */
 var stat = document.querySelectorAll('.number');
