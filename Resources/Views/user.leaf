@@ -74,20 +74,6 @@ function closeModal() {
     document.getElementById('infoModal').style.display="none";
 }
 
-/* post form data  */
-formElem.onsubmit = async (e) => {
-    e.preventDefault();
-    let response = await fetch('/workouts', {
-      method: 'POST',
-      body: new FormData(formElem),
-      connection: "close",
-      contentType: "application/x-www-form-urlencoded; charset=utf-8",
-      cookie: "vapor-session=KJau/XpwWY7goqAWIbwouHotudUGrHtIiXeFTpTqsSs=",
-      host: "127.0.0.1:8080",
-    });
-    let result = await response.json();
-    alert(result.message);
-};
 
 /* number workouts  */
 var stat = document.querySelectorAll('.number');
