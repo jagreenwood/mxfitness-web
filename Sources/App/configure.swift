@@ -23,7 +23,6 @@ public func configure(_ app: Application) throws {
     }
 
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-    print(app.directory.publicDirectory)
     app.middleware.use(SessionsMiddleware(session: app.sessions.driver))
     app.views.use(.leaf)
 

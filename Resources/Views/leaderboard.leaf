@@ -26,7 +26,7 @@ LeaderboardUser
 <div class="background">
     <div class="top">
         <div class="top-content">
-            <h1 class="title">Spring 2020</h1>
+            <h1 class="title">#(response.name)</h1>
         </div>
         <div class="nav-cell">
             <img class="nav-img" src="#(user.avatar)"> 
@@ -42,8 +42,8 @@ LeaderboardUser
                 <div class="stats circle total-circle">
                     <span class="stats number total-number"></span>
                 </div>
-                <p class="stats bold"><a href="/user/#(user.id)">#(user.name)</a></p>
-                <p class="stats">#(user.total-workout-count)</p>
+                <p class="stats normal"><a href="/user/#(user.id)">#(user.name)</a></p>
+                <p class="stats normal">#(user.total-workout-count)</p>
             </div>
         #endfor
         <br>
@@ -55,8 +55,8 @@ LeaderboardUser
                 <div class="stats circle duration-circle">
                     <span class="stats number time"></span>
                 </div>
-                <p class="stats bold">#(user.name)</p>
-                <p class="stats">#(user.total-workout-duration)</p>
+                <p class="stats normal"><a href="/user/#(user.id)">#(user.name)</a></p>
+                <p class="stats normal">#(user.total-workout-duration)</p>
             </div> 
         #endfor
         <br>

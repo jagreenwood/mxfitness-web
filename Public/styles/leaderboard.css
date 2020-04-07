@@ -60,7 +60,6 @@ img {
 
 .stats {
     width: 50%;
-    font-weight: bold;
     letter-spacing: 2.6px;
 }
 
@@ -99,6 +98,12 @@ h1 {
 
 .bold {
     font-weight: bold;
+    color: #afb1be;
+}
+
+.normal {
+    font-weight: normal;
+    color: #afb1be;
 }
 
 button {

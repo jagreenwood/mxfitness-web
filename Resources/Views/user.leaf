@@ -37,8 +37,8 @@ $( document ).ready(function() {
             </div>
             <div class="top-content-right">
                 <h1 class="user-info">#(response.name)</h1>
-                <p class="user-info"><span>#(response.total-workout-count)</span> workouts</p>
-                <p class="user-info">#(response.total-workout-duration)</p>
+                <p class="user-info">#(response.total-workout-count) workouts</p>
+                <p class="user-info">#(response.total-workout-duration) minutes</p>
             </div> 
         </div>
         <div class="nav-cell">
@@ -51,11 +51,9 @@ $( document ).ready(function() {
         <h1 class="stats">Workouts</h1>
         #for(workout in response.workouts):
             <div class="stats-container">
-                <div class="stats circle">
-                    <span class="stats number"></span>
-                </div>
-                <p class="stats bold">#(workout.type)</p>
-                <p class="stats time">#(workout.duration)</p> 
+                <p class="stats normal">#(workout.date)</p>
+                <p class="stats normal">#(workout.type)</p>
+                <p class="stats bold">#(workout.duration)</p> 
             </div>
         #endfor 
         <br>
@@ -74,7 +72,7 @@ $( document ).ready(function() {
             </div>
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
-                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Name" required>
+                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Type" required>
                 <input type="date" id="date" name="date" class="modal-input"  placeholder="MM-DD-YYYY" required pattern="\d{2}-\d{2}-\d{4}" required>
                 <input type="number" id="duration" class="modal-input" name="duration" min="1" max="500" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>

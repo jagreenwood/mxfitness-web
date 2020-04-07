@@ -26,6 +26,7 @@ img {
 
 .user-info {
     padding: 5px;
+    color: #fff;
 }
 
 .top-content-left {
@@ -72,6 +73,11 @@ h1 {
 
 .bold {
     font-weight: bold;
+    color: #afb1be;
+}
+
+.normal {
+    font-weight: normal;
     color: #afb1be;
 }
 
