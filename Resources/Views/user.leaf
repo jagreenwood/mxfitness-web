@@ -15,17 +15,6 @@ Context:
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
-<script>
-$( document ).ready(function() {
-    $("#date").datepicker({ 
-        format: 'mm-dd-yyyy'
-    });
-    $("#date").on("change", function () {
-        var newDate = $(this).val();
-        return newDate;
-    });
-}); 
-</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8"/>
@@ -72,8 +61,8 @@ $( document ).ready(function() {
             </div>
             <div class="modal-top">
                 <h1 class="modal-h1">Enter a new Workout</h1>
-                <input type="name" name="type" class="modal-input" id="name" placeholder="Workout Type" required>
-                <input type="date" id="date" name="date" class="modal-input"  placeholder="MM-DD-YYYY" required pattern="\d{2}-\d{2}-\d{4}" required>
+                <input type="text" name="type" class="modal-input" id="name" placeholder="Workout Type" required>
+                <input type="text" id="date" name="date" class="modal-input"  placeholder="MM-DD-YYYY" required pattern="\d{2}-\d{2}-\d{4}" required>
                 <input type="number" id="duration" class="modal-input" name="duration" min="30" max="5000" placeholder="Duration (minutes)" required>
                 <button id="submit" type="submit" class="modal-btn" value="Submit">Submit</button>
             </div>
