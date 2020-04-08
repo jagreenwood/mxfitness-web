@@ -10,11 +10,14 @@ Context:
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/styles/main.css">
 <link rel="stylesheet" type="text/css" href="/styles/user.css">
-<!--  libs needed for datepicker() -->
-<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
+<script src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js></script>
+<script src="/js/moment-duration-format.js"></script>
+
+<script>
+    function formatDuration(duration) {
+        return moment.duration(duration, 'minutes').format("h[h] m[m]");
+    }
+</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8"/>
@@ -27,7 +30,11 @@ Context:
             <div class="top-content-right">
                 <h1 class="user-info">#(response.name)</h1>
                 <p class="user-info">#(response.total-workout-count) workouts</p>
-                <p class="user-info">#(response.total-workout-duration) minutes</p>
+                <p id="total-duration" class="user-info"></p>
+
+                <script>
+                    document.getElementById("total-duration").innerHTML = formatDuration(#(response.total-workout-duration))
+                </script>
             </div> 
         </div>
         <div class="nav-cell">
@@ -42,9 +49,13 @@ Context:
             <div class="stats-container">
                 <p class="stats normal">#(workout.date)</p>
                 <p class="stats normal">#(workout.type)</p>
-                <p class="stats bold">#(workout.duration)</p> 
+                <p id="duration-#(workout.id)" class="stats bold"></p> 
+
+                <script>
+                    document.getElementById("duration-#(workout.id)").innerHTML = moment.duration(#(workout.duration), 'minutes').format("h[h] m[m]");
+                </script>
             </div>
-        #endfor 
+        #endfor
         <br>
     </div>
     #if(user.id == response.id):
