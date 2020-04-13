@@ -67,8 +67,7 @@ Context:
                 list.hide();
                 if(numInList <= 10 ){
                     button.hide();
-                }
-                if (numInList > numToShow + 1) {
+                } else {
                     button.show();
                 }
                 list.slice(0, numToShow).show();
