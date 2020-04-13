@@ -57,6 +57,31 @@ Context:
             </div>
         #endfor
         <br>
+         <button class="show-more">Show More</button>
+        <script>
+            $(document).ready(function(){
+                var list = $(".stats-container");
+                var numToShow = 10;
+                var button = $(".show-more");
+                var numInList = list.length;
+                list.hide();
+                if(numInList <= 10 ){
+                    button.hide();
+                }
+                if (numInList > numToShow + 1) {
+                    button.show();
+                }
+                list.slice(0, numToShow).show();
+                button.click(function(){
+                    var showing = list.filter(':visible').length;
+                    list.slice(showing - 1, showing + numToShow - 5).fadeIn();
+                    var nowShowing = list.filter(':visible').length;
+                    if (nowShowing >= numInList) {
+                        button.hide();
+                    }
+                });
+            });
+        </script>
     </div>
     #if(user.id == response.id):
         <div class="bottom-content-right">
