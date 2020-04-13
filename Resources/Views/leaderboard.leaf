@@ -90,16 +90,14 @@ LeaderboardUser
 
                 if(numInListWorkouts <= 10 ){
                     buttonWorkouts.hide();
-                }
-                if (numInListWorkouts > numToShow + 1) {
+                } else {
                     buttonWorkouts.show();
                 }
 
 
                 if(numInListDurations <= 3 ){
                     buttonDurations.hide();
-                }
-                if (numInListDurations > numToShow + 1) {
+                } else {
                     buttonDurations.show();
                 }
 
