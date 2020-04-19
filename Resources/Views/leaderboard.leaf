@@ -79,7 +79,7 @@ LeaderboardUser
             $(document).ready(function(){
                 var listWorkouts = $(".total-workout");
                 var listDurations = $(".total-duration");
-                var numToShow = 3;
+                var numToShow = 10;
                 var buttonWorkouts = $(".show-more-workouts");
                 var buttonDurations = $(".show-more-durations");
                 var numInListWorkouts = listWorkouts.length;
@@ -88,14 +88,14 @@ LeaderboardUser
                 listWorkouts.hide();
                 listDurations.hide();
 
-                if(numInListWorkouts <= 10 ){
+                if(numInListWorkouts <= numToShow ){
                     buttonWorkouts.hide();
                 } else {
                     buttonWorkouts.show();
                 }
 
 
-                if(numInListDurations <= 3 ){
+                if(numInListDurations <= numToShow ){
                     buttonDurations.hide();
                 } else {
                     buttonDurations.show();
@@ -106,7 +106,6 @@ LeaderboardUser
                 listDurations.slice(0, numToShow).show();
 
                 buttonWorkouts.click(function(){
-                    console.log('workouts click');
                     var showing = listWorkouts.filter(':visible').length;
                     listWorkouts.slice(showing - 1, showing + numToShow - 5).fadeIn();
                     var nowShowing = listWorkouts.filter(':visible').length;
