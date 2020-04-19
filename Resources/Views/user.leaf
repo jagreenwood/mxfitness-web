@@ -65,7 +65,7 @@ Context:
                 var button = $(".show-more");
                 var numInList = list.length;
                 list.hide();
-                if(numInList <= 10 ){
+                if(numInList <= numToShow ){
                     button.hide();
                 } else {
                     button.show();
