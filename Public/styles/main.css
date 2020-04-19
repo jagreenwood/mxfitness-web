@@ -94,6 +94,10 @@ h1.title {
     margin-top: 6px;
 }
 
+.right-align-text {
+    text-align: right;
+}
+
 button,
 .modal-btn, 
 .btn {

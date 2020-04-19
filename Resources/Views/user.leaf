@@ -47,7 +47,7 @@ Context:
     <div class="bottom-content-left">
         <h1 class="stats">Workouts</h1>
         #for(workout in response.workouts):
-            <div class="stats-container">
+            <div class="stats-container right-align-text">
                 <p class="stats normal">#(workout.date)</p>
                 <p class="stats normal">#(workout.type)</p>
                 <p id="duration-#(workout.id)" class="stats bold"></p> 
