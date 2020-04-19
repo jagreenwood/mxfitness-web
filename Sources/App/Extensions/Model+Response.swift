@@ -61,7 +61,10 @@ extension User {
         }
 
         return $workouts.load(on: request.db)
-            .flatMapThrowing { try self.workouts.responses(request) }
+            .flatMapThrowing {
+                let workouts = self.workouts.sorted { $0.date > $1.date }
+                return try workouts.responses(request)
+        }
             .flatMap { $0 }
             .flatMapThrowing { workoutResponses in
                 try UserResponse(id: self.requireID().uuidString,
