@@ -37,6 +37,7 @@ public func configure(_ app: Application) throws {
 
     // set up commands
     app.commands.use(CreateCommandGroup(), as: CreateCommandGroup.name)
+    app.commands.use(DeleteCommandGroup(), as: DeleteCommandGroup.name)
 
     // create a new JSON encoder/decoder that uses unix-timestamp dates
     let encoder = JSONEncoder()
